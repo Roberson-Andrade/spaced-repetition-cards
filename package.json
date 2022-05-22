@@ -1,0 +1,16 @@
+{
+  "name": "spaced-repetition-cards",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": "true",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "author": "Roberson Andrade <roberson_souza11@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
+}
