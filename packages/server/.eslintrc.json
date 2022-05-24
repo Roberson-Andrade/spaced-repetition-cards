@@ -11,7 +11,12 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint/eslint-plugin"],
-  "rules": {},
+  "rules": {
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "no-useless-constructor": "off"
+  },
   "ignorePatterns": [
     "*.config.ts",
     "dist/*"
