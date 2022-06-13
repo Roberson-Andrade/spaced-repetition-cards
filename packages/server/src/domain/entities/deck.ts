@@ -1,25 +1,21 @@
-import { uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { Card } from './card';
 
-interface DeckProps {
-  cards: Card[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 export class Deck {
-  private readonly id: string;
+  public readonly id: string;
 
-  private props: DeckProps;
+  public name: string;
 
-  private constructor(props?: DeckProps, id?: string) {
-    this.id = id;
-    this.props = props;
-  }
+  public category?: string;
 
-  static create(props: DeckProps, id?: string) {
-    const deck = new Deck(props, id ?? uuidv4());
+  public cards?: Card[];
 
-    return deck;
+  public createdAt?: Date;
+
+  public updatedAt?: Date;
+
+  constructor(props?: Omit<Deck, 'id'>, id?: string) {
+    Object.assign(this, props);
+    this.id = id ?? uuidv4();
   }
 }
