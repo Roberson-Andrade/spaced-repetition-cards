@@ -1,25 +1,18 @@
 import { v4 as uuidv4 } from 'uuid';
 
-interface CardProps {
-  description: string;
-  answer: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
 export class Card {
-  private id: string;
+  public readonly id: string;
 
-  private props: CardProps;
+  public description: string;
 
-  private constructor(props?: CardProps, id?: string) {
-    this.props = props;
+  public answer: string;
+
+  public createdAt?: Date;
+
+  public updatedAt?: Date;
+
+  constructor(props: Omit<Card, 'id'>, id?: string) {
+    Object.assign(this, props);
     this.id = id ?? uuidv4();
-  }
-
-  static create(props: CardProps, id?: string) {
-    const card = new Card(props, id);
-
-    return card;
   }
 }

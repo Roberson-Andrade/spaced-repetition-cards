@@ -1,4 +1,4 @@
-import { CreateCard } from './createCard';
+import { CreateCard } from './CreateCard';
 
 describe('Create a card', () => {
   it('should be able to created a card successfully', async () => {
