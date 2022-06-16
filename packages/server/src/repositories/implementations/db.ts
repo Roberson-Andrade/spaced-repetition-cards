@@ -20,3 +20,8 @@ export const createCard = ({ id, answer, description }: Card) => squelPostgres
   .set('answer', answer)
   .set('description', description)
   .toString();
+
+export const fetchDeck = () => squelPostgres
+  .select()
+  .from('deck')
+  .toString();
