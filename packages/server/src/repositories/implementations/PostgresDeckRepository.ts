@@ -1,7 +1,7 @@
 import { Pool } from 'pg';
 import options from '../../config/database';
 import { Deck } from '../../domain/entities/deck';
-import { createDeck, fetchDeck } from './db';
+import { createDeck, deleteDeck, fetchDeck } from './db';
 import { IDeckRepository } from '../IDeckRepository';
 
 export class PostgresDeckRepository implements IDeckRepository {
@@ -30,6 +30,19 @@ export class PostgresDeckRepository implements IDeckRepository {
     try {
       const response = await client.query(fetchDeck());
       return response.rows;
+    } catch (error) {
+      return error;
+    } finally {
+      client.release();
+    }
+  }
+
+  async delete(deckId: string): Promise<number | unknown> {
+    const client = await this.pool.connect();
+
+    try {
+      const response = await client.query(deleteDeck(deckId));
+      return response.rowCount;
     } catch (error) {
       return error;
     } finally {
