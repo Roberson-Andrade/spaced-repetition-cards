@@ -9,12 +9,12 @@ export class CreateCard {
     this.cardRepository = cardRepository;
   }
 
-  async execute({ answer, description }: CreateCardRequestDTO) {
+  async execute({ answer, description, deckId }: CreateCardRequestDTO) {
     if (answer.trim() === '' || description.trim() === '') {
       throw new Error('Description and answer are required fields');
     }
 
-    const card = new Card({ answer, description });
+    const card = new Card({ answer, description, deckId });
 
     await this.cardRepository.save(card);
   }

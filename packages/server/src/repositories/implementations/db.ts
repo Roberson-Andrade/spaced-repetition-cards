@@ -13,14 +13,6 @@ export const createDeck = ({ id, name, category }: Deck) => squelPostgres
   .returning('*')
   .toString();
 
-export const createCard = ({ id, answer, description }: Card) => squelPostgres
-  .insert()
-  .into('card')
-  .set('id', id)
-  .set('answer', answer)
-  .set('description', description)
-  .toString();
-
 export const fetchDeck = () => squelPostgres
   .select()
   .from('deck')
@@ -30,4 +22,18 @@ export const deleteDeck = (deckId: string) => squelPostgres
   .delete()
   .from('deck')
   .where('id = ?', deckId)
+  .toString();
+
+export const createCard = ({
+  id,
+  deckId,
+  answer,
+  description,
+}: Card) => squelPostgres
+  .insert()
+  .into('card')
+  .set('id', id)
+  .set('deckId', deckId)
+  .set('answer', answer)
+  .set('description', description)
   .toString();

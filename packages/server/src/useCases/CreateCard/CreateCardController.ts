@@ -8,11 +8,15 @@ export class CreateCardController {
     this.createCard = createCard;
   }
 
-  async handle(request: Request, response: Response):Promise<Response> {
-    const { description, answer } = request.body;
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { description, answer, deckId } = request.body;
 
     try {
-      await this.createCard.execute({ answer, description });
+      if (!deckId) {
+        throw new Error('A deck is necessary to create a card');
+      }
+
+      await this.createCard.execute({ answer, description, deckId });
 
       return response.status(201).send();
     } catch (error) {
