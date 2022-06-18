@@ -1,5 +1,5 @@
-import { Deck } from '../../domain/entities/deck';
-import { IDeckRepository } from '../../repositories/IDeckRepository';
+import { Deck } from '../../../domain/entities/deck';
+import { IDeckRepository } from '../../../repositories/IDeckRepository';
 
 export class FetchDeck {
   private deckRepository: IDeckRepository

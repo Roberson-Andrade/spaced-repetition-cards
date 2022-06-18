@@ -1,4 +1,4 @@
-import { PostgresCardRepository } from '../../repositories/implementations/PostgresCardRepository';
+import { PostgresCardRepository } from '../../../repositories/implementations/PostgresCardRepository';
 import { CreateCard } from './CreateCard';
 import { CreateCardController } from './CreateCardController';
 

@@ -1,5 +1,5 @@
-import { Card } from '../../domain/entities/card';
-import { ICardRepository } from '../../repositories/ICardRepository';
+import { Card } from '../../../domain/entities/card';
+import { ICardRepository } from '../../../repositories/ICardRepository';
 import { CreateCardRequestDTO } from './CreateCardDTO';
 
 export class CreateCard {

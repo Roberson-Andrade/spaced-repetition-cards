@@ -1,4 +1,4 @@
-import { PostgresDeckRepository } from '../../repositories/implementations/PostgresDeckRepository';
+import { PostgresDeckRepository } from '../../../repositories/implementations/PostgresDeckRepository';
 import { DeleteDeck } from './DeleteDeck';
 import { DeleteDeckController } from './DeleteDeckController';
 

@@ -1,4 +1,4 @@
-import { PostgresDeckRepository } from '../../repositories/implementations/PostgresDeckRepository';
+import { PostgresDeckRepository } from '../../../repositories/implementations/PostgresDeckRepository';
 import { CreateDeck } from './CreateDeck';
 import { CreatedeckController } from './CreateDeckController';
 

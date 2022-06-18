@@ -1,4 +1,4 @@
-import { IDeckRepository } from '../../repositories/IDeckRepository';
+import { IDeckRepository } from '../../../repositories/IDeckRepository';
 
 export class DeleteDeck {
   private deckRepository: IDeckRepository
