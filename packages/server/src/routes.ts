@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { createCardController } from './useCases/card/CreateCard';
-import { fetchCardController } from './useCases/card/fetchCard';
+import { fetchCardController } from './useCases/card/FetchCard';
 import { createDeckController } from './useCases/deck/CreateDeck';
 import { deleteDeckController } from './useCases/deck/DeleteDeck';
 import { fetchDeckController } from './useCases/deck/FetchDeck';
