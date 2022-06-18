@@ -43,3 +43,9 @@ export const fetchCard = (deckId: string) => squelPostgres
   .from('card')
   .where('deckId = ?', deckId)
   .toString();
+
+export const deleteCard = (cardId: string) => squelPostgres
+  .delete()
+  .from('card')
+  .where('id = ?', cardId)
+  .toString();
