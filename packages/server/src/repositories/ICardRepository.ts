@@ -2,5 +2,6 @@
 import { Card } from '../domain/entities/card';
 
 export interface ICardRepository {
-  save(card: Card): Promise<Card | unknown>;
+  save(card: Card): Promise<Card | unknown>
+  fetch(deckId: string): Promise<Card[]>
 }

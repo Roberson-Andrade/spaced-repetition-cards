@@ -23,4 +23,17 @@ export class PostgresCardRepository implements ICardRepository {
       client.release();
     }
   }
+
+  async fetch(deckId: string): Promise<Card[]> {
+    const client = await this.pool.connect();
+
+    try {
+      const { rows } = await client.query(fetchCard(deckId));
+      return rows;
+    } catch (error) {
+      return error;
+    } finally {
+      client.release();
+    }
+  }
 }

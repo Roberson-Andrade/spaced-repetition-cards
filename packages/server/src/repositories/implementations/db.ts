@@ -37,3 +37,9 @@ export const createCard = ({
   .set('answer', answer)
   .set('description', description)
   .toString();
+
+export const fetchCard = (deckId: string) => squelPostgres
+  .select()
+  .from('card')
+  .where('deckId = ?', deckId)
+  .toString();
