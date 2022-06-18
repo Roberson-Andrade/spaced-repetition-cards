@@ -5,6 +5,7 @@ describe('Create a card', () => {
     const card = new Card({
       description: 'How much is 2 + 2?',
       answer: 'It\'s 4!',
+      deckId: 'asdasfa-asd151as-d',
     });
 
     expect(card).toBeTruthy();
