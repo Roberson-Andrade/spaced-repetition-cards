@@ -1,14 +1,14 @@
 import { Pool } from 'pg';
 import { Card } from '../../domain/entities/card';
 import { ICardRepository } from '../ICardRepository';
-import options from '../../config/database';
-import { createCard } from './db';
+import pool from '../../config/database';
+import { createCard, fetchCard } from './db';
 
 export class PostgresCardRepository implements ICardRepository {
   private pool: Pool
 
   constructor() {
-    this.pool = new Pool(options);
+    this.pool = pool;
   }
 
   async save(card: Card): Promise<Card | unknown> {

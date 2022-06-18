@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import options from '../../config/database';
+import pool from '../../config/database';
 import { Deck } from '../../domain/entities/deck';
 import { createDeck, deleteDeck, fetchDeck } from './db';
 import { IDeckRepository } from '../IDeckRepository';
@@ -8,7 +8,7 @@ export class PostgresDeckRepository implements IDeckRepository {
   private pool: Pool
 
   constructor() {
-    this.pool = new Pool(options);
+    this.pool = pool;
   }
 
   async save(deck: Deck): Promise<Deck | unknown> {
@@ -28,8 +28,8 @@ export class PostgresDeckRepository implements IDeckRepository {
     const client = await this.pool.connect();
 
     try {
-      const response = await client.query(fetchDeck());
-      return response.rows;
+      const { rows } = await client.query(fetchDeck());
+      return rows;
     } catch (error) {
       return error;
     } finally {

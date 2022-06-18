@@ -1,4 +1,4 @@
-import { PoolConfig } from 'pg';
+import { PoolConfig, Pool } from 'pg';
 
 const clientConfig: PoolConfig = {
   user: process.env.DB_USER,
@@ -7,4 +7,6 @@ const clientConfig: PoolConfig = {
   password: process.env.DB_PASSWORD,
 };
 
-export default clientConfig;
+const pool = new Pool(clientConfig);
+
+export default pool;
