@@ -1,7 +1,9 @@
 import { Pool } from 'pg';
 import pool from '../../config/database';
 import { Deck } from '../../domain/entities/deck';
-import { createDeck, deleteDeck, fetchDeck } from './db';
+import {
+  createDeck, deleteDeck, fetchCard, fetchDeck,
+} from './db';
 import { IDeckRepository } from '../IDeckRepository';
 
 export class PostgresDeckRepository implements IDeckRepository {
@@ -29,7 +31,17 @@ export class PostgresDeckRepository implements IDeckRepository {
 
     try {
       const { rows } = await client.query(fetchDeck());
-      return rows;
+
+      const cards = await Promise.all(
+        rows.map((deck: Deck) => client.query(fetchCard(deck.id))),
+      );
+
+      const decks = rows.map((deck, i) => ({
+        ...deck,
+        cards: cards[i].rows,
+      }));
+
+      return decks;
     } catch (error) {
       return error;
     } finally {
