@@ -29,6 +29,7 @@ export const createCard = ({
   deckId,
   answer,
   description,
+  numberOfRevisions,
 }: Card) => squelPostgres
   .insert()
   .into('card')
@@ -36,10 +37,17 @@ export const createCard = ({
   .set('deckId', deckId)
   .set('answer', answer)
   .set('description', description)
+  .set('numberOfRevisions', numberOfRevisions || 0)
   .toString();
 
 export const fetchCard = (deckId: string) => squelPostgres
   .select()
+  .field('id')
+  .field('description')
+  .field('answer')
+  .field('created_at')
+  .field('updated_at')
+  .field('lastRevision')
   .from('card')
   .where('deckId = ?', deckId)
   .toString();
