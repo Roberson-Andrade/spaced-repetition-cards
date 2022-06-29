@@ -1,3 +1,4 @@
+import { formatISO9075 } from 'date-fns';
 import squel from 'squel';
 import { Card } from '../../domain/entities/card';
 import { Deck } from '../../domain/entities/deck';
@@ -13,12 +14,12 @@ export const createDeck = ({ id, name, category }: Deck) => squelPostgres
   .returning('*')
   .toString();
 
-export const fetchDeck = () => squelPostgres
+export const fetchDeck = () => squel
   .select()
   .from('deck')
   .toString();
 
-export const deleteDeck = (deckId: string) => squelPostgres
+export const deleteDeck = (deckId: string) => squel
   .delete()
   .from('deck')
   .where('id = ?', deckId)
@@ -30,7 +31,7 @@ export const createCard = ({
   answer,
   description,
   numberOfRevisions,
-}: Card) => squelPostgres
+}: Card) => squel
   .insert()
   .into('card')
   .set('id', id)
@@ -40,20 +41,29 @@ export const createCard = ({
   .set('numberOfRevisions', numberOfRevisions || 0)
   .toString();
 
-export const fetchCard = (deckId: string) => squelPostgres
+export const fetchCard = (deckId: string) => squel
   .select()
   .field('id')
   .field('description')
   .field('answer')
-  .field('created_at')
-  .field('updated_at')
-  .field('lastRevision')
+  .field('created_at', 'createdAt')
+  .field('updated_at', 'updatedAt')
+  .field('lastRevision', 'lastRevision')
+  .field('numberOfRevisions', 'numberOfRevisions')
   .from('card')
   .where('deckId = ?', deckId)
   .toString();
 
-export const deleteCard = (cardId: string) => squelPostgres
+export const deleteCard = (cardId: string) => squel
   .delete()
   .from('card')
+  .where('id = ?', cardId)
+  .toString();
+
+export const updateCardRevision = (cardId: string) => squel
+  .update()
+  .table('card')
+  .set('numberOfRevisions = numberOfRevisions + 1')
+  .set('lastRevision', formatISO9075(new Date()))
   .where('id = ?', cardId)
   .toString();

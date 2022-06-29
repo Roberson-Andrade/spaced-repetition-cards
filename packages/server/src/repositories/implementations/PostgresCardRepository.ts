@@ -37,14 +37,22 @@ export class PostgresCardRepository implements ICardRepository {
     }
   }
 
-  async delete(cardId: string): Promise<number | unknown> {
+  async delete(cardId: string): Promise<number> {
     const client = await this.pool.connect();
 
     try {
       const { rowCount } = await client.query(deleteCard(cardId));
       return rowCount;
-    } catch (error) {
-      return error;
+    } finally {
+      client.release();
+    }
+  }
+
+  async updateRevision(cardId: string): Promise<void> {
+    const client = await this.pool.connect();
+
+    try {
+      await client.query(updateCardRevision(cardId));
     } finally {
       client.release();
     }
