@@ -13,14 +13,12 @@ export class PostgresDeckRepository implements IDeckRepository {
     this.pool = pool;
   }
 
-  async save(deck: Deck): Promise<Deck | unknown> {
+  async save(deck: Deck): Promise<Deck> {
     const client = await this.pool.connect();
 
     try {
       const response = await client.query(createDeck(deck));
       return response.rows[0];
-    } catch (err) {
-      return err;
     } finally {
       client.release();
     }
@@ -42,21 +40,17 @@ export class PostgresDeckRepository implements IDeckRepository {
       }));
 
       return decks;
-    } catch (error) {
-      return error;
     } finally {
       client.release();
     }
   }
 
-  async delete(deckId: string): Promise<number | unknown> {
+  async delete(deckId: string): Promise<number> {
     const client = await this.pool.connect();
 
     try {
       const response = await client.query(deleteDeck(deckId));
       return response.rowCount;
-    } catch (error) {
-      return error;
     } finally {
       client.release();
     }

@@ -2,7 +2,9 @@ import { Pool } from 'pg';
 import { Card } from '../../domain/entities/card';
 import { ICardRepository } from '../ICardRepository';
 import pool from '../../config/database';
-import { createCard, deleteCard, fetchCard } from './db';
+import {
+  createCard, deleteCard, fetchCard, updateCardRevision,
+} from './db';
 
 export class PostgresCardRepository implements ICardRepository {
   private pool: Pool
@@ -11,14 +13,12 @@ export class PostgresCardRepository implements ICardRepository {
     this.pool = pool;
   }
 
-  async save(card: Card): Promise<Card | unknown> {
+  async save(card: Card): Promise<Card> {
     const client = await this.pool.connect();
 
     try {
       const response = await client.query(createCard(card));
       return response.rows[0];
-    } catch (error) {
-      return error;
     } finally {
       client.release();
     }
@@ -30,8 +30,6 @@ export class PostgresCardRepository implements ICardRepository {
     try {
       const { rows } = await client.query(fetchCard(deckId));
       return rows;
-    } catch (error) {
-      return error;
     } finally {
       client.release();
     }
