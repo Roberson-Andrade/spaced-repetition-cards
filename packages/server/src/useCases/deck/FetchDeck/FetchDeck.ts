@@ -1,5 +1,6 @@
 import { Deck } from '../../../domain/entities/deck';
 import { IDeckRepository } from '../../../repositories/IDeckRepository';
+import { TimerUtils } from '../../../utils/TimerUtils';
 
 export class FetchDeck {
   private deckRepository: IDeckRepository
@@ -9,6 +10,11 @@ export class FetchDeck {
   }
 
   async execute(): Promise<Deck[]> {
-    return this.deckRepository.fetch();
+    const decks = await this.deckRepository.fetch();
+
+    return decks.map((deck) => ({
+      ...deck,
+      cards: TimerUtils.updateRevisionStatus(deck.cards),
+    }));
   }
 }
