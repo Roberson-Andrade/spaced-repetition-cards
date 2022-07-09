@@ -1,10 +1,11 @@
-import React from 'react';
+import AppContent from './app.routes';
 import SideBar from './components/Sidebar';
 
 function App() {
   return (
-    <div>
+    <div className="flex text-slate-700">
       <SideBar />
+      <AppContent />
     </div>
   );
 }
