@@ -54,6 +54,7 @@ function SideBar() {
           text, icon, onClick, pathLocation,
         }) => (
           <SidebarButton
+            key={text}
             icon={icon}
             showIcon={open}
             pathLocation={pathLocation}
