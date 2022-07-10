@@ -7,6 +7,7 @@ function AppContent() {
     <Routes>
       <Route path="/" element={<Navigate replace to="/home" />} />
       <Route path="/home" element={<HomeContent />} />
+      <Route path="/mydecks" element={<MyDecks />} />
       <Route path="*" element={<div>404 Not found</div>} />
     </Routes>
   );
