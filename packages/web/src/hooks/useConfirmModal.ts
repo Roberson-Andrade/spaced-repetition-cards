@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
-import ConfirmModal from '../components/Modal';
+import ConfirmModal from '../components/ConfirmModal';
 import { ModalProps } from '../types';
 
 type CreateModalOptions = Omit<ModalProps, 'closeModal'>
