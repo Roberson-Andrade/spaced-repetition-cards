@@ -17,7 +17,7 @@ export type Card = {
 
     numberOfRevisions?: number;
 
-    revisionStatus?: 'UP_TO_DATE' | 'OVERDUE'
+    revisionStatus?: "UP_TO_DATE" | "OVERDUE"
 
     createdAt?: Date;
 

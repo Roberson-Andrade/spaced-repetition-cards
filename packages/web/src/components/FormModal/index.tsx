@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import React from "react";
+import ReactDom from "react-dom";
 
 type FormModalProps = {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ function FormModal({
   );
   return (
     <>
-      {ReactDom.createPortal(formModalElement, document.getElementById('modal')!)}
+      {ReactDom.createPortal(formModalElement, document.getElementById("modal")!)}
     </>
   );
 }

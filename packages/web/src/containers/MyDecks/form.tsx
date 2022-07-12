@@ -1,13 +1,13 @@
 import {
   ChangeEvent, FormEvent, useState
-} from 'react';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import { DeckFormProps } from '../../types';
+} from "react";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import { DeckFormProps } from "../../types";
 
 function DeckForm({ onCloseModal }: DeckFormProps) {
-  const [nameValue, setNameValue] = useState('');
-  const [categoryValue, setCategoryValue] = useState('');
+  const [nameValue, setNameValue] = useState("");
+  const [categoryValue, setCategoryValue] = useState("");
 
   const nameInputHandler = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setNameValue(target.value);
@@ -19,8 +19,8 @@ function DeckForm({ onCloseModal }: DeckFormProps) {
 
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('nameValue', nameValue);
-    console.log('categoryValue', categoryValue);
+    console.log("nameValue", nameValue);
+    console.log("categoryValue", categoryValue);
   };
 
   return (

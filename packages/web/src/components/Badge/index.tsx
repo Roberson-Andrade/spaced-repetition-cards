@@ -1,5 +1,5 @@
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React from "react";
 
 type BadgeProps = {
     children?: React.ReactNode;

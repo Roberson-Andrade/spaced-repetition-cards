@@ -1,6 +1,6 @@
-import ReactDom from 'react-dom';
-import { ModalProps } from '../../types';
-import Button from '../Button';
+import ReactDom from "react-dom";
+import { ModalProps } from "../../types";
+import Button from "../Button";
 
 function ConfirmModal({
   title,
@@ -43,7 +43,7 @@ function ConfirmModal({
   );
   return (
     <>
-      {ReactDom.createPortal(modalElement, document.getElementById('modal')!)}
+      {ReactDom.createPortal(modalElement, document.getElementById("modal")!)}
     </>
   );
 }

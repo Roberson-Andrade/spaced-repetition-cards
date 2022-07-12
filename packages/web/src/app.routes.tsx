@@ -1,6 +1,6 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import HomeContent from './containers/HomeContent/page';
-import MyDecks from './containers/MyDecks/page';
+import { Navigate, Route, Routes } from "react-router-dom";
+import HomeContent from "./containers/HomeContent/page";
+import MyDecks from "./containers/MyDecks/page";
 
 function AppContent() {
   return (

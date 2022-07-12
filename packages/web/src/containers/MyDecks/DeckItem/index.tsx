@@ -1,6 +1,6 @@
-import { BsArrowRightShort } from 'react-icons/bs';
-import Badge from '../../../components/Badge';
-import { Deck } from '../../../types';
+import { BsArrowRightShort } from "react-icons/bs";
+import Badge from "../../../components/Badge";
+import { Deck } from "../../../types";
 
 type DeckItemProps = {
     item: Deck

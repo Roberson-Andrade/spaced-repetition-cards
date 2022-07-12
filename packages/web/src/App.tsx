@@ -1,5 +1,5 @@
-import AppContent from './app.routes';
-import SideBar from './components/Sidebar';
+import AppContent from "./app.routes";
+import SideBar from "./components/Sidebar";
 
 function App() {
   return (
