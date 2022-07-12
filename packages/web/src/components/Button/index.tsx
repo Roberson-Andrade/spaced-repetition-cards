@@ -7,13 +7,15 @@ export type ButtonProps = {
     children: React.ReactNode;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     variant?: 'primary' | 'warning' | 'error' | 'success' | 'info';
-    type?: 'button' | 'submit' | 'reset' | undefined
+    type?: 'button' | 'submit' | 'reset' | undefined;
+    className?: string;
 }
 
 function Button({
   children,
   variant,
   type = 'button',
+  className,
   onClick,
 }: ButtonProps) {
   const variantColor = selectColorBtn(variant);
@@ -22,7 +24,7 @@ function Button({
     <button
       type={type}
       onClick={onClick}
-      className={`px-3 py-2 rounded-md text-white ${variantColor}`}
+      className={`px-3 py-2 rounded-md text-white ${variantColor} ${className}`}
     >
       {children}
     </button>
