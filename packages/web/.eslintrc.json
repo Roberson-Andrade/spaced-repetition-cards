@@ -25,6 +25,7 @@
         "import/extensions": "off",
         "react/jsx-filename-extension": "off",
         "react/react-in-jsx-scope": "off",
-        "react/require-default-props": "off"
+        "react/require-default-props": "off",
+        "comma-dangle": "off"
     }
 }
