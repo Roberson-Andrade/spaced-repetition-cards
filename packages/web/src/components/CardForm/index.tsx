@@ -1,21 +1,26 @@
-import {
-  ChangeEvent, FormEvent, useState
-} from 'react';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import Select from '../Select/Index';
+import { ChangeEvent, FormEvent, useState } from "react";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import Select from "../Select/Index";
 
-const decks = ['Física', 'ENEM', 'Inglês', 'Matemática', 'História', 'Direito Constitucional'];
+const decks = [
+  "Física",
+  "ENEM",
+  "Inglês",
+  "Matemática",
+  "História",
+  "Direito Constitucional",
+];
 
 type CardFormProps = {
   onCloseModal: () => void;
-}
+};
 
 function CardForm({ onCloseModal }: CardFormProps) {
-  const [frontValue, setfrontValue] = useState('');
-  const [backValue, setbackValue] = useState('');
-  const [deckValue, setDeckValue] = useState('');
-  const [tagValue, setTagValue] = useState('');
+  const [frontValue, setfrontValue] = useState("");
+  const [backValue, setbackValue] = useState("");
+  const [deckValue, setDeckValue] = useState("");
+  const [tagValue, setTagValue] = useState("");
 
   const frontInputHandler = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setfrontValue(target.value);
@@ -35,14 +40,17 @@ function CardForm({ onCloseModal }: CardFormProps) {
 
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('frontValue', frontValue);
-    console.log('backValue', backValue);
-    console.log('deckValue', deckValue);
-    console.log('tagValue', tagValue);
+    console.log("frontValue", frontValue);
+    console.log("backValue", backValue);
+    console.log("deckValue", deckValue);
+    console.log("tagValue", tagValue);
   };
 
   return (
-    <form onSubmit={submitHandler} className="flex flex-col p-3 w-full h-full gap-4">
+    <form
+      onSubmit={submitHandler}
+      className="flex flex-col p-3 w-full h-full gap-4"
+    >
       <h3 className="text-2xl">Card</h3>
 
       <Input
@@ -81,13 +89,9 @@ function CardForm({ onCloseModal }: CardFormProps) {
       />
 
       <div className="flex justify-end mt-auto">
-        <Button onClick={onCloseModal}>
-          Voltar
-        </Button>
+        <Button onClick={onCloseModal} variant="info">Voltar</Button>
         <span className="w-2" />
-        <Button type="submit">
-          Criar
-        </Button>
+        <Button type="submit">Criar</Button>
       </div>
     </form>
   );
