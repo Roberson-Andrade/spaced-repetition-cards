@@ -1,19 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-500 font-semibold shadow-md hover:bg-blue-700 active:translate-y-[1px];
+    @apply bg-blue-500 text-white shadow-md hover:bg-blue-700 active:translate-y-[1px];
+  }
+
+  .btn-info {
+    @apply bg-gray-400 text-white shadow-md hover:bg-gray-500 active:translate-y-[1px];
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center
+  }
+
+  .btn-disabled {
+    @apply bg-[#bab4b4] text-[#605f5f] cursor-default;
   }
 }
 * {
-    margin:0;
-    padding:0;
-    box-sizing: 'border-box';
+  margin: 0;
+  padding: 0;
+  box-sizing: "border-box";
 }
 
 body {
-    font-family: 'Raleway', 'sans-serif';
+  font-family: "Raleway", "sans-serif";
 }
