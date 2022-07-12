@@ -13,3 +13,7 @@ export type ModalProps = {
     onConfirm: () => void;
     onCancel?: () => void;
 }
+
+export type DeckFormProps = {
+    onCloseModal: () => void;
+}
