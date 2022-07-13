@@ -1,6 +1,6 @@
 function HomeContent() {
   return (
-    <div>HomeContent</div>
+    <div className="bg-[#F7F8FA] flex-grow">HomeContent</div>
   );
 }
 
