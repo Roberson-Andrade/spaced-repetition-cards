@@ -847,6 +847,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@kamona/tailwindcss-perspective@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@kamona/tailwindcss-perspective/-/tailwindcss-perspective-0.1.1.tgz#60f823a914439c7dcf46484119e803bcd62f2bb4"
+  integrity sha512-ayC/wnfR1EYBIc3ShDKp8oYfZTPPo1aRcEuMVI+BcoUz28bsxtEpiakS0Gc6vvXi9LjKuJillJYShMl+qGldEw==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
