@@ -55,7 +55,7 @@ const deckItems = [
 
 function MyDecks() {
   return (
-    <div className="flex justify-center items-center flex-grow">
+    <div className="flex-center flex-grow bg-[#F7F8FA]">
       <DeckTable items={deckItems} />
     </div>
   );

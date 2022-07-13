@@ -24,7 +24,7 @@ function ConfirmModal({
   };
 
   const modalElement = (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex-center">
       <div className="flex flex-col content-center justify-between rounded-md bg-white p-5 w-full max-w-[500px] h-full max-h-[200px] mx-5">
         <div>
           <h4 className="text-2xl">{title}</h4>
