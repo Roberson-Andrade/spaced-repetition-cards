@@ -4,24 +4,18 @@ export type Deck = {
     category: string;
 }
 
-export type Card = {
+export type CardType = {
     readonly id: string;
-
     readonly deckId: string;
-
-    description: string;
-
-    answer: string;
-
+    front: string;
+    back: string;
     lastRevision?: Date;
-
     numberOfRevisions?: number;
-
     revisionStatus?: "UP_TO_DATE" | "OVERDUE"
-
-    createdAt?: Date;
-
-    updatedAt?: Date;
+    createdAt?: string;
+    updatedAt?: string;
+    tag?: string;
+    deckName: string;
 }
 
 export type ModalProps = {

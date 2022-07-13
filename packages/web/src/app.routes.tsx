@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import HomeContent from "./containers/HomeContent/page";
+import MyCards from "./containers/MyCards/page";
 import MyDecks from "./containers/MyDecks/page";
 
 function AppContent() {
@@ -8,6 +9,7 @@ function AppContent() {
       <Route path="/" element={<Navigate replace to="/home" />} />
       <Route path="/home" element={<HomeContent />} />
       <Route path="/mydecks" element={<MyDecks />} />
+      <Route path="/mycards" element={<MyCards />} />
       <Route path="*" element={<div>404 Not found</div>} />
     </Routes>
   );
