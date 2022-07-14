@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BiChevronsLeft, BiMenu } from "react-icons/bi";
 import { CgCardClubs } from "react-icons/cg";
-import { GiCardBurn } from "react-icons/gi";
+import { GiCardBurn, GiPapers } from "react-icons/gi";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { IoHomeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -49,6 +49,14 @@ function SideBar() {
       pathLocation: "/mycards",
       onClick: () => {
         navigate("/mycards");
+      },
+    },
+    {
+      text: "Revisões",
+      icon: <GiPapers size="25px" />,
+      pathLocation: "/revisions",
+      onClick: () => {
+        navigate("/revisions");
       },
     },
   ];
