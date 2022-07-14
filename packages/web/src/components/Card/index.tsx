@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { useState } from "react";
+import React, { useState } from "react";
 import Badge from "../Badge";
 
 type CardProps = {
@@ -8,6 +8,9 @@ type CardProps = {
     deckName: string;
     tag?: string;
     createdAt?: string;
+    className?: string;
+    rotateDisabled?: boolean;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 function Card({
@@ -15,11 +18,20 @@ function Card({
   back,
   deckName,
   tag,
-  createdAt
+  createdAt,
+  className,
+  rotateDisabled,
+  onClick
 }: CardProps) {
   const [flip, setFlip] = useState<"rotate-y-0" | "rotate-y-180">("rotate-y-0");
 
-  const clickFlipHandler = () => {
+  const clickHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (onClick) {
+      onClick(event);
+    }
+    if (rotateDisabled) {
+      return;
+    }
     setFlip("rotate-y-180");
   };
 
@@ -27,12 +39,14 @@ function Card({
     setFlip("rotate-y-0");
   };
   return (
-    <div className="w-full max-w-[250px] h-full max-h-[300px] perspective-10">
+    <button
+      onClick={clickHandler}
+      onMouseLeave={leaveFlipHandler}
+      onKeyDown={leaveFlipHandler}
+      className={`w-full max-w-[250px] h-full max-h-[300px] perspective-10 ${className || ""}`}
+    >
       <div className={`w-full h-full transform-style-3d transition-transform duration-300 ${flip}`}>
         <article
-          onClick={clickFlipHandler}
-          onMouseLeave={leaveFlipHandler}
-          onKeyDown={leaveFlipHandler}
           className="h-full w-full bg-white rounded-md shadow-md hover:shadow-xl hover:translate-y-[-3px] relative transform-style-3d transition-transform cursor-pointer"
         >
           <div className="flex flex-col gap-5 py-4 px-2 h-full w-full absolute backface-hidden">
@@ -70,7 +84,7 @@ function Card({
           </div>
         </article>
       </div>
-    </div>
+    </button>
   );
 }
 
