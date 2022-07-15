@@ -22,7 +22,6 @@
     "react/require-default-props": "off",
     "comma-dangle": "off",
     "quotes": ["error", "double"],
-    "react/button-has-type": "off",
-    "indent": "off"
+    "react/button-has-type": "off"
   }
 }
