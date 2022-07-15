@@ -10,6 +10,7 @@ type CardProps = {
     createdAt?: string;
     className?: string;
     rotateDisabled?: boolean;
+    flipToggle?: boolean;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -21,6 +22,7 @@ function Card({
   createdAt,
   className,
   rotateDisabled,
+  flipToggle,
   onClick
 }: CardProps) {
   const [flip, setFlip] = useState<"rotate-y-0" | "rotate-y-180">("rotate-y-0");
@@ -32,10 +34,17 @@ function Card({
     if (rotateDisabled) {
       return;
     }
+    if (flipToggle) {
+      setFlip((prevState) => (prevState === "rotate-y-0" ? "rotate-y-180" : "rotate-y-0"));
+      return;
+    }
     setFlip("rotate-y-180");
   };
 
   const leaveFlipHandler = () => {
+    if (flipToggle) {
+      return;
+    }
     setFlip("rotate-y-0");
   };
   return (
