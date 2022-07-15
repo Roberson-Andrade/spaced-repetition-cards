@@ -2,6 +2,9 @@ export type Deck = {
     id: string;
     name: string;
     category: string;
+    totalCards?: number;
+    cardsOverDue?: number;
+    createdAt?: string;
 }
 
 export type CardType = {
