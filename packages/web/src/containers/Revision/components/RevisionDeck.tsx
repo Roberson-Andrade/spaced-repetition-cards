@@ -1,52 +1,31 @@
-import { BiRevision } from "react-icons/bi";
-import Badge from "../../../components/Badge";
-import Tooltip from "../../../components/Tooltip";
+import React from "react";
 import { Deck } from "../../../types";
+import RevisionDeckItem from "./RevisionDeckItem";
 
-type DeckItemProps = {
-  item: Deck
+type RevisionDeckProps = {
+  items: Deck[]
+  onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-function RevisionDeck({
-  item: {
-  name,
-  category,
-  totalCards,
-  cardsOverDue
-}
-}:DeckItemProps) {
+function RevisionDeck({ items, onClick }: RevisionDeckProps) {
   return (
-    <li
-      className="flex items-center justify-between rounded-md px-5 py-5 my-3 bg-slate-600 text-white"
-    >
-      <div className="flex items-center">
-        <p className="mr-3">
-          {name}
+    <div className="h-full max-h-[800px] w-full max-w-[1000px] p-5 mx-5 rounded-md">
+      <div className="flex items-center justify-between">
+        <h3 className="text-xl">Decks</h3>
+        <p className="flex font-medium">
+          Total de cards: 200
         </p>
-        <Badge>
-          {category}
-        </Badge>
       </div>
-
-      <div className="flex items-center gap-5">
-        <Tooltip text="Cards a revisar">
-          <Badge className="bg-[#ffc107] p-2 w-[35px] flex-center text-[14px]">{cardsOverDue}</Badge>
-        </Tooltip>
-        <Tooltip text="Numero de cards">
-          <Badge className="p-2 w-[35px] flex-center text-[14px]">{totalCards}</Badge>
-        </Tooltip>
-
-        <Tooltip text="Revisar">
-          <button
-            type="button"
-            className="text-center align-middle p-2 rounded-full transition-all hover:bg-slate-100/10"
-          >
-            <BiRevision className="inline-block" size="25px" />
-          </button>
-        </Tooltip>
-      </div>
-
-    </li>
+      <ul className="mt-4 max-h-full">
+        {items.map((deck) => (
+          <RevisionDeckItem
+            key={deck.id}
+            item={deck}
+            onClick={onClick}
+          />
+        ))}
+      </ul>
+    </div>
   );
 }
 
