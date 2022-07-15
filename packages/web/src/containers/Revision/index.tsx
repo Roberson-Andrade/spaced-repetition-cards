@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../../components/Button";
 import { CardType, Deck } from "../../types";
 import RevisionDeck from "./components/RevisionDeck";
 import RevisionDisplay from "./components/RevisionDisplay";
@@ -62,20 +63,28 @@ const mockCards: CardType[] = [
 function Revision() {
   const [startRevision, setStartRevision] = useState(false);
 
+  const startRevisionHandler = () => {
+    setStartRevision(true);
+  };
+
+  const stopRevisionHandler = () => {
+    setStartRevision(false);
+  };
   return (
     <div className="flex-center flex-grow bg-gradient-to-r backdrop-blur-xl from-[#e2e3e4] to-[#acbecd] gap-3 p-5 flex-wrap">
-      <div className="h-full max-h-[800px] w-full max-w-[1000px] p-5 mx-5 rounded-md">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xl">Decks</h3>
-          <p className="flex font-medium gap-3">
-            Total de cards: 200
-          </p>
-        </div>
-        <ul className="mt-4 max-h-full">
-          {deckItems.map((deck:Deck) => <RevisionDeck key={deck.id} item={deck} />)}
-        </ul>
+      <div className="flex flex-col h-full w-full items-center flex-grow ">
+        {!startRevision && (
+          <RevisionDeck items={deckItems} onClick={startRevisionHandler} />
+        )}
+
+        {startRevision && (
+        <>
+          <RevisionDisplay cards={mockCards} />
+          <Button onClick={stopRevisionHandler}>Parar revisão</Button>
+        </>
+        )}
+
       </div>
-      {startRevision && <RevisionDisplay cards={mockCards} />}
     </div>
   );
 }
