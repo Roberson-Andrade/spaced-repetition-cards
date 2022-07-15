@@ -1,6 +1,34 @@
 import { useState } from "react";
-import Card from "../../components/Card";
-import { CardType } from "../../types";
+import { CardType, Deck } from "../../types";
+import RevisionDeck from "./components/RevisionDeck";
+import RevisionDisplay from "./components/RevisionDisplay";
+
+const deckItems: Deck[] = [
+  {
+    id: "1",
+    name: "Cinemática",
+    category: "Física",
+    totalCards: 35,
+    cardsOverDue: 17,
+    createdAt: "06/07/2022"
+  },
+  {
+    id: "2",
+    name: "Eletromagnetismo",
+    category: "Física",
+    totalCards: 20,
+    cardsOverDue: 5,
+    createdAt: "03/05/2022"
+  },
+  {
+    id: "3",
+    name: "Past Perfect",
+    category: "Inglês",
+    totalCards: 150,
+    cardsOverDue: 30,
+    createdAt: "04/06/2022"
+  },
+];
 
 const mockCards: CardType[] = [
   {
@@ -32,76 +60,22 @@ const mockCards: CardType[] = [
   },
 ];
 function Revision() {
-  const [selected, setSelected] = useState(0);
-
-  const selectNext = () => {
-    if (selected === mockCards.length) {
-      return;
-    }
-    setSelected((previousState) => previousState + 1);
-  };
-
-  const selectPrevious = () => {
-    if (selected === 0) {
-      return;
-    }
-    setSelected((previousState) => previousState - 1);
-  };
+  const [startRevision, setStartRevision] = useState(false);
 
   return (
     <div className="flex-center flex-grow bg-gradient-to-r backdrop-blur-xl from-[#e2e3e4] to-[#acbecd] gap-3 p-5 flex-wrap">
-      <div className="relative w-full h-full flex-center">
-        {mockCards.map(({
-          id,
-          front,
-          back,
-          deckName,
-          tag,
-          createdAt
-        }, index, array) => {
-          if (index < selected) {
-            return (
-              <Card
-                key={id}
-                front={front}
-                back={back}
-                deckName={deckName}
-                tag={tag}
-                createdAt={createdAt}
-                className="absolute left-[25%] max-h-[500px] max-w-[300px] blur-[1.5px] -rotate-3 transition-transform"
-                rotateDisabled
-                onClick={selectPrevious}
-              />
-            );
-          }
-          if (selected === index) {
-            return (
-              <Card
-                key={id}
-                front={front}
-                back={back}
-                deckName={deckName}
-                tag={tag}
-                createdAt={createdAt}
-                className="absolute max-h-[600px] max-w-[400px] z-[1000] backdrop-blur-sm transition-transform"
-              />
-            );
-          }
-          return (
-            <Card
-              key={id}
-              front={front}
-              back={back}
-              deckName={deckName}
-              tag={tag}
-              createdAt={createdAt}
-              className={`absolute right-[25%] max-h-[500px] max-w-[300px] z-[${(array.length - 1) - index}] blur-[1.5px] rotate-3 transition-transform`}
-              rotateDisabled
-              onClick={selectNext}
-            />
-          );
-        }) }
+      <div className="h-full max-h-[800px] w-full max-w-[1000px] p-5 mx-5 rounded-md">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl">Decks</h3>
+          <p className="flex font-medium gap-3">
+            Total de cards: 200
+          </p>
+        </div>
+        <ul className="mt-4 max-h-full">
+          {deckItems.map((deck:Deck) => <RevisionDeck key={deck.id} item={deck} />)}
+        </ul>
       </div>
+      {startRevision && <RevisionDisplay cards={mockCards} />}
     </div>
   );
 }
