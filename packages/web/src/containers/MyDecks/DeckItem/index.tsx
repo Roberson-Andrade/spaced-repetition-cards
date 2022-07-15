@@ -1,4 +1,4 @@
-import { BsArrowRightShort } from "react-icons/bs";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import Badge from "../../../components/Badge";
 import { Deck } from "../../../types";
 
@@ -22,9 +22,9 @@ function DeckItem({ item: { name, category } }:DeckItemProps) {
 
       <button
         type="button"
-        className="text-center align-middle w-8 h-8 rounded-full transition-all hover:bg-slate-100/10"
+        className="text-center align-middle p-1 rounded-full transition-all hover:bg-slate-100/10"
       >
-        <BsArrowRightShort className="inline-block" size="25px" />
+        <MdKeyboardArrowRight className="inline-block" size="25px" />
       </button>
     </li>
   );
