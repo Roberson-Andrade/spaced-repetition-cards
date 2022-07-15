@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import Button from '../../../components/Button';
-import FormModal from '../../../components/FormModal';
-import { Deck } from '../../../types';
-import DeckItem from '../DeckItem';
-import DeckForm from '../form';
+import { useState } from "react";
+import Button from "../../../components/Button";
+import FormModal from "../../../components/FormModal";
+import { Deck } from "../../../types";
+import DeckItem from "../DeckItem";
+import DeckForm from "../form";
 
 type DeckTableProps = {
   items: Deck[]
