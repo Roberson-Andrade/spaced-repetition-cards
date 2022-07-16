@@ -15,7 +15,8 @@
     "import/prefer-default-export": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+    "import/no-extraneous-dependencies": "off"
   },
   "ignorePatterns": [
     "*.config.ts",
