@@ -1,6 +1,7 @@
 import React from "react";
 import { BiRevision } from "react-icons/bi";
 import Badge from "../../../components/Badge";
+import IconButton from "../../../components/IconButton";
 import Tooltip from "../../../components/Tooltip";
 import { Deck } from "../../../types";
 
@@ -40,13 +41,12 @@ function RevisionDeckItem({
         </Tooltip>
 
         <Tooltip text="Revisar">
-          <button
-            type="button"
-            className="text-center align-middle p-2 rounded-full transition-all hover:bg-slate-100/10"
+          <IconButton
             onClick={onClick}
+            className="hover:bg-slate-100/10"
           >
             <BiRevision className="inline-block" size="25px" />
-          </button>
+          </IconButton>
         </Tooltip>
       </div>
 

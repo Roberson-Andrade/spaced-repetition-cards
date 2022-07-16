@@ -1,5 +1,6 @@
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Badge from "../../../components/Badge";
+import IconButton from "../../../components/IconButton";
 import { Deck } from "../../../types";
 
 type DeckItemProps = {
@@ -20,12 +21,9 @@ function DeckItem({ item: { name, category } }:DeckItemProps) {
         </Badge>
       </div>
 
-      <button
-        type="button"
-        className="text-center align-middle p-1 rounded-full transition-all hover:bg-slate-100/10"
-      >
+      <IconButton className="hover:bg-slate-100/10">
         <MdKeyboardArrowRight className="inline-block" size="25px" />
-      </button>
+      </IconButton>
     </li>
   );
 }
