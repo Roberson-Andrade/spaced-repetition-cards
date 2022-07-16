@@ -79,7 +79,7 @@ function Revision() {
 
         {startRevision && (
         <>
-          <RevisionDisplay cards={mockCards} />
+          <RevisionDisplay items={mockCards} stopRevision={stopRevisionHandler} />
           <Button onClick={stopRevisionHandler}>Parar revisão</Button>
         </>
         )}
