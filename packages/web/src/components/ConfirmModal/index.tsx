@@ -12,7 +12,9 @@ function ConfirmModal({
   onConfirm,
 }: ModalProps) {
   const confirmHandler = () => {
-    onConfirm();
+    if (onConfirm) {
+      onConfirm();
+    }
     closeModal();
   };
 
@@ -25,15 +27,17 @@ function ConfirmModal({
 
   const modalElement = (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex-center">
-      <div className="flex flex-col content-center justify-between rounded-md bg-white p-5 w-full max-w-[500px] h-full max-h-[200px] mx-5">
-        <div>
-          <h4 className="text-2xl">{title}</h4>
-        </div>
+      <div className="flex flex-col gap-3 content-center justify-between rounded-md bg-white p-5 max-w-[500px] min-h-[200px] mx-5 text-slate-700">
+        {typeof title !== "string" ? title : (
+          <div>
+            <h4 className="text-2xl">{title}</h4>
+          </div>
+        )}
         <div>
           <p>{description}</p>
         </div>
         <div className="flex justify-end">
-          <Button onClick={cancelHandler}>{cancelButtonText}</Button>
+          {cancelButtonText && <Button onClick={cancelHandler}>{cancelButtonText}</Button>}
           <span className="w-2" />
           <Button onClick={confirmHandler}>{confirmButtonText}</Button>
         </div>
