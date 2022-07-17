@@ -1,4 +1,9 @@
+import { ChangeEvent, useState } from "react";
+import Button from "../../components/Button";
 import Card from "../../components/Card";
+import CardForm from "../../components/CardForm";
+import FormModal from "../../components/FormModal";
+import Input from "../../components/Input";
 import { CardType } from "../../types";
 
 const mockCards: CardType[] = [
@@ -32,26 +37,69 @@ const mockCards: CardType[] = [
 ];
 
 function MyCards() {
+  const [searchValue, setSearchValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+
+  const changeSearchHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  const filterBySearchValue = (card: CardType) => {
+    if (!searchValue) {
+      return card;
+    }
+
+    return card.front.toLowerCase().includes(searchValue.toLowerCase());
+  };
+
+  const openModalHandler = () => {
+    setOpenModal(true);
+  };
+  const closeModalHandler = () => {
+    setOpenModal(false);
+  };
+
   return (
-    <div className="flex flex-grow bg-[#F7F8FA] gap-3 p-5 flex-wrap">
-      {mockCards.map(({
-        front,
-        back,
-        id,
-        deckName,
-        tag,
-        createdAt
-      }) => (
-        <Card
-          key={id}
-          front={front}
-          back={back}
-          deckName={deckName}
-          tag={tag}
-          createdAt={createdAt}
-        />
-      )) }
-    </div>
+    <>
+      <div className="flex flex-grow flex-col gap-3 bg-[#F7F8FA] p-5 ">
+        <header className="flex items-center gap-6 justify-between">
+          <h2 className="text-2xl font-semibold">Cards</h2>
+          <Input
+            id="search"
+            type="text"
+            className="flex-grow"
+            variant="search"
+            value={searchValue}
+            onChange={changeSearchHandler}
+          />
+          <Button onClick={openModalHandler}>
+            Criar Cards
+          </Button>
+        </header>
+        <div className="flex flex-grow flex-wrap gap-3">
+          {mockCards.filter(filterBySearchValue).map(({
+            front,
+            back,
+            id,
+            deckName,
+            tag,
+            createdAt
+          }) => (
+            <Card
+              key={id}
+              front={front}
+              back={back}
+              deckName={deckName}
+              tag={tag}
+              createdAt={createdAt}
+            />
+          )) }
+        </div>
+      </div>
+      <FormModal open={openModal}>
+        <CardForm onCloseModal={closeModalHandler} />
+      </FormModal>
+    </>
   );
 }
 
