@@ -1,3 +1,5 @@
+import React from "react";
+
 export type Deck = {
     id: string;
     name: string;
@@ -22,12 +24,12 @@ export type CardType = {
 }
 
 export type ModalProps = {
-    title: string;
+    title: string | React.ReactElement<any, string>;
     description: string;
     confirmButtonText: string;
-    cancelButtonText: string;
+    cancelButtonText?: string;
     closeModal: () => void;
-    onConfirm: () => void;
+    onConfirm?: () => void;
     onCancel?: () => void;
 }
 
