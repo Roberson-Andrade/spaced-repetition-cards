@@ -4,9 +4,12 @@ type TooltipProps = {
   children: React.ReactElement;
   text: string;
   variant?: "info-xl";
+  className?: string;
 }
 
-function Tooltip({ children, text, variant }: TooltipProps) {
+function Tooltip({
+  children, text, variant, className
+}: TooltipProps) {
   const [visible, setVisible] = useState(false);
   let classVariant = "";
 
@@ -29,7 +32,7 @@ function Tooltip({ children, text, variant }: TooltipProps) {
   };
 
   return (
-    <div className="relative flex-center">
+    <div className={`relative flex-center ${className}`}>
       <div className={`absolute top-[-2rem] rounded-md transition-all duration-[400ms] font-medium z-50 ${visible ? "opacity-100" : "opacity-0"} pointer-events-none ${classVariant}`}>
         <p>{text}</p>
       </div>
