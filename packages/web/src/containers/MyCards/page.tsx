@@ -1,9 +1,11 @@
 import { ChangeEvent, useState } from "react";
+import { HiOutlinePlusSm } from "react-icons/hi";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import CardForm from "../../components/CardForm";
 import FormModal from "../../components/FormModal";
 import Input from "../../components/Input";
+import { useWindowWidth } from "../../hooks/useScreenWidth";
 import { CardType } from "../../types";
 
 const mockCards: CardType[] = [
@@ -39,6 +41,7 @@ const mockCards: CardType[] = [
 function MyCards() {
   const [searchValue, setSearchValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const screenWidth = useWindowWidth();
 
   const changeSearchHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -61,9 +64,9 @@ function MyCards() {
 
   return (
     <>
-      <div className="flex flex-grow flex-col gap-3 bg-[#F7F8FA] p-5 ">
-        <header className="flex items-center gap-6 justify-between">
-          <h2 className="text-2xl font-semibold">Cards</h2>
+      <div className="flex flex-grow flex-col gap-3 bg-[#F7F8FA] media-sidebar p-2 2sm:pb-16">
+        <header className="flex items-center gap-6 2sm:gap-2 justify-between">
+          {screenWidth > 500 && <h2 className="text-2xl font-semibold">Cards</h2>}
           <Input
             id="search"
             type="text"
@@ -73,10 +76,10 @@ function MyCards() {
             onChange={changeSearchHandler}
           />
           <Button onClick={openModalHandler}>
-            Criar Cards
+            {screenWidth > 550 ? "Criar Cards" : <HiOutlinePlusSm size="25px" />}
           </Button>
         </header>
-        <div className="flex flex-grow flex-wrap gap-3">
+        <div className="grid auto-rows-auto grid-cols-autoFitCard gap-3 md:justify-center">
           {mockCards.filter(filterBySearchValue).map(({
             front,
             back,
@@ -92,6 +95,7 @@ function MyCards() {
               deckName={deckName}
               tag={tag}
               createdAt={createdAt}
+              className="h-[300px]"
             />
           )) }
         </div>
