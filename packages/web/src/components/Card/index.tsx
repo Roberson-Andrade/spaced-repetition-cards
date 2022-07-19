@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useState } from "react";
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
+import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
 import Badge from "../Badge";
 import IconButton from "../IconButton";
 
@@ -15,10 +16,14 @@ type CardProps = {
     flipToggle?: boolean;
     showActionButtons?: boolean;
     disableFlipAnimation?: boolean;
+    showLeftButton?: boolean;
+    showRightButton?: boolean;
     onClickSuccessBtn?: React.MouseEventHandler<HTMLButtonElement>;
     onClickFailBtn?: React.MouseEventHandler<HTMLButtonElement>;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
     onAnimationEnd?: React.AnimationEventHandler<HTMLDivElement>;
+    onClickNextBtn?: React.MouseEventHandler<HTMLButtonElement>;
+    onClickPreviousBtn?:React.MouseEventHandler<HTMLButtonElement>;
 }
 
 function Card({
@@ -32,10 +37,14 @@ function Card({
   flipToggle,
   showActionButtons,
   disableFlipAnimation,
+  showLeftButton,
+  showRightButton,
   onClick,
   onClickSuccessBtn,
   onClickFailBtn,
-  onAnimationEnd
+  onAnimationEnd,
+  onClickNextBtn,
+  onClickPreviousBtn
 }: CardProps) {
   const [flip, setFlip] = useState<"rotate-y-0" | "rotate-y-180">("rotate-y-0");
 
@@ -63,6 +72,7 @@ function Card({
   useEffect(() => {
     setFlip("rotate-y-0");
   }, [rotateDisabled]);
+
   return (
     <div
       onClick={clickHandler}
@@ -88,6 +98,18 @@ function Card({
             <div className="text-[15px] p-3 text-center">
               {front}
             </div>
+
+            {showLeftButton && (
+            <IconButton onClick={onClickPreviousBtn}>
+              <BsArrowLeftCircle className="absolute top-1/2 left-5 transition-all active:translate-y-1" size="30px" />
+            </IconButton>
+            ) }
+
+            {showRightButton && (
+            <IconButton onClick={onClickNextBtn}>
+              <BsArrowRightCircle className="absolute top-1/2 right-5 transition-all active:translate-y-1" size="30px" />
+            </IconButton>
+            )}
 
             <footer className="mt-auto self-end">
               <Badge>{tag}</Badge>
