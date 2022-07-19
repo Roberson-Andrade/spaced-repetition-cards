@@ -31,6 +31,70 @@ const deckItems: Deck[] = [
     cardsOverDue: 30,
     createdAt: "04/06/2022"
   },
+  {
+    id: "2",
+    name: "Eletromagnetismo",
+    category: "Física",
+    totalCards: 20,
+    cardsOverDue: 5,
+    createdAt: "03/05/2022"
+  },
+  {
+    id: "3",
+    name: "Past Perfect",
+    category: "Inglês",
+    totalCards: 150,
+    cardsOverDue: 30,
+    createdAt: "04/06/2022"
+  },
+  {
+    id: "2",
+    name: "Eletromagnetismo",
+    category: "Física",
+    totalCards: 20,
+    cardsOverDue: 5,
+    createdAt: "03/05/2022"
+  },
+  {
+    id: "3",
+    name: "Past Perfect",
+    category: "Inglês",
+    totalCards: 150,
+    cardsOverDue: 30,
+    createdAt: "04/06/2022"
+  },
+  {
+    id: "2",
+    name: "Eletromagnetismo",
+    category: "Física",
+    totalCards: 20,
+    cardsOverDue: 5,
+    createdAt: "03/05/2022"
+  },
+  {
+    id: "3",
+    name: "Past Perfect",
+    category: "Inglês",
+    totalCards: 150,
+    cardsOverDue: 30,
+    createdAt: "04/06/2022"
+  },
+  {
+    id: "3",
+    name: "Past Perfect",
+    category: "Inglês",
+    totalCards: 150,
+    cardsOverDue: 30,
+    createdAt: "04/06/2022"
+  },
+  {
+    id: "3",
+    name: "Past Perfect",
+    category: "Inglês",
+    totalCards: 150,
+    cardsOverDue: 30,
+    createdAt: "04/06/2022"
+  },
 ];
 
 const mockCards: CardType[] = [
@@ -94,7 +158,7 @@ function Revision() {
           {startRevision && (
           <>
             <RevisionDisplay items={mockCards} stopRevision={stopRevisionHandler} />
-            <Button onClick={stopRevisionHandler}>Parar revisão</Button>
+            <Button className="2sm:mt-2" onClick={stopRevisionHandler}>Parar revisão</Button>
           </>
           )}
 
