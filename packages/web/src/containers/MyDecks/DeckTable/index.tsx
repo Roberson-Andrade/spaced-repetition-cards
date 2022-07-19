@@ -20,7 +20,7 @@ function DeckTable({ items }:DeckTableProps) {
   };
   return (
     <>
-      <div className="h-[100%] w-[100%] max-w-[800px] max-h-[80vh] px-5">
+      <div className="h-[90vh] w-[100%] max-w-[800px] mt-5 px-5">
         <div className="flex justify-between items-center">
           <h3 className="text-2xl">
             Meus decks
@@ -29,7 +29,7 @@ function DeckTable({ items }:DeckTableProps) {
             Criar deck
           </Button>
         </div>
-        <ul className="mt-4 max-h-full overflow-scroll">
+        <ul className="mt-4 max-h-full overflow-y-scroll 3sm:overflow-visible sm:pb-10 sm:max-h-max">
           {items.map((deck:Deck) => <DeckItem key={deck.id} item={deck} />)}
         </ul>
       </div>

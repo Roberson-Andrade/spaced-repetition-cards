@@ -51,11 +51,41 @@ const deckItems = [
     name: "Past Perfect",
     category: "Inglês",
   },
+  {
+    id: "8",
+    name: "Eletromagnetismo",
+    category: "Física",
+  },
+  {
+    id: "9",
+    name: "Past Perfect",
+    category: "Inglês",
+  },
+  {
+    id: "10",
+    name: "Past Perfect",
+    category: "Inglês",
+  },
+  {
+    id: "8",
+    name: "Eletromagnetismo",
+    category: "Física",
+  },
+  {
+    id: "9",
+    name: "Past Perfect",
+    category: "Inglês",
+  },
+  {
+    id: "10",
+    name: "Past Perfect",
+    category: "Inglês",
+  },
 ];
 
 function MyDecks() {
   return (
-    <div className="flex-center flex-grow bg-[#F7F8FA]">
+    <div className="flex justify-center flex-grow bg-[#F7F8FA]">
       <DeckTable items={deckItems} />
     </div>
   );

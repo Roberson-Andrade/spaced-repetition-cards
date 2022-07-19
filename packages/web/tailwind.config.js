@@ -14,6 +14,9 @@ module.exports = {
       gridTemplateRows: {
         7: "repeat(7, minmax(0, 1fr))"
       },
+      gridTemplateColumns: {
+        autoFitCard: "repeat(auto-fit, 250px)"
+      },
       colors: {
         success: {
           50: "#7de775",
@@ -29,7 +32,18 @@ module.exports = {
         }
       }
     },
-
+    screens: {
+      "2xl": { max: "1535px" },
+      xl: { max: "1260px" },
+      lg: { max: "1023px" },
+      minMd: { min: "767px" },
+      md: { max: "767px" },
+      sm: { max: "600px" },
+      "2sm": { max: "580px" },
+      "3sm": { max: "500px" },
+      "4sm": { max: "454px" },
+      "5sm": { max: "342px" }
+    }
   },
   plugins: [
     // eslint-disable-next-line import/no-extraneous-dependencies, global-require

@@ -21,9 +21,9 @@ function RevisionDeckItem({
 }:DeckItemProps) {
   return (
     <li
-      className="flex items-center justify-between rounded-md px-5 py-5 my-3 bg-slate-600 text-white"
+      className="flex sm:flex-col sm:gap-5 items-center justify-between rounded-md px-5 py-5 my-3 bg-slate-600 text-white"
     >
-      <div className="flex items-center">
+      <div className="flex items-center sm:w-full sm:justify-between">
         <p className="mr-3">
           {name}
         </p>
@@ -32,7 +32,7 @@ function RevisionDeckItem({
         </Badge>
       </div>
 
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-5 sm:w-full">
         <Tooltip text="Cards a revisar">
           <Badge className="bg-[#ffc107] p-2 w-[35px] flex-center text-[14px]">{cardsOverDue}</Badge>
         </Tooltip>
@@ -40,7 +40,7 @@ function RevisionDeckItem({
           <Badge className="p-2 w-[35px] flex-center text-[14px]">{totalCards}</Badge>
         </Tooltip>
 
-        <Tooltip text="Revisar">
+        <Tooltip text="Revisar" className="sm:ml-auto">
           <IconButton
             onClick={onClick}
             className="hover:bg-slate-100/10"

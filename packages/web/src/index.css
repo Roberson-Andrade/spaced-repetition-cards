@@ -19,12 +19,15 @@
   .btn-disabled {
     @apply bg-[#bab4b4] text-[#605f5f] cursor-default;
   }
+  
+  .media-sidebar {
+    @apply 3sm:h-[calc(100%_-_100px)];
+  } 
 }
 
 @layer utilities {
   ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    width: 10px;
   }
 
   ::-webkit-scrollbar-track {

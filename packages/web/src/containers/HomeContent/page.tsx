@@ -11,20 +11,20 @@ function HomeContent() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex-center p-3 flex-col gap-4 bg-[#F7F8FA] flex-grow">
-        <div className="flex-center flex-col gap-2 p-2 w-full max-w-[800px]">
+      <div className="flex-center p-3 flex-col gap-4 bg-[#F7F8FA] flex-grow media-sidebar">
+        <div className="flex-center flex-col gap-2 p-2 w-full max-w-[830px]">
           <div className="flex items-center justify-between w-full">
-            <h3 className="text-2xl font-semibold">
+            <h3 className="text-2xl 2sm:text-xl font-semibold">
               Home
             </h3>
 
             <p className="text-gray-500">
-              {new Date().toLocaleDateString("pt-BR", { dateStyle: "full" })}
+              {new Date().toLocaleDateString("pt-BR", { dateStyle: "medium" })}
             </p>
           </div>
 
-          <div className="grid grid-rows-2 grid-flow-col gap-3 w-full">
-            <div className="flex-center flex-col justify-between gap-8 p-5 bg-white rounded-lg shadow-md col-span-2">
+          <div className="grid auto-rows-fr minMd:grid-cols-3 gap-3 w-full">
+            <div className="flex-center flex-col justify-between gap-8 p-5 bg-white rounded-lg shadow-md minMd:col-span-2">
               <header className="w-full flex items-center justify-between">
                 <h4 className="text-xl">Decks</h4>
                 <button
@@ -56,7 +56,7 @@ function HomeContent() {
               </Button>
             </div>
 
-            <div className="flex-center flex-col justify-between gap-8 p-5 bg-white rounded-lg shadow-md col-span-2">
+            <div className="flex-center flex-col justify-between gap-8 p-5 bg-white rounded-lg shadow-md minMd:col-span-2">
               <header className="w-full flex items-center justify-between">
                 <h4 className="text-xl">Cards</h4>
                 <button
@@ -89,7 +89,7 @@ function HomeContent() {
               </Button>
             </div>
 
-            <div className="flex-center flex-col justify-between gap-8 p-5 bg-white rounded-lg shadow-md row-span-2">
+            <div className="flex-center flex-col justify-between gap-8 p-5 bg-white rounded-lg shadow-md minMd:row-start-1 minMd:col-start-3 minMd:row-span-2">
               <header className="w-full flex items-center justify-between">
                 <h4 className="text-xl">Revisão</h4>
                 <button
@@ -120,10 +120,10 @@ function HomeContent() {
                 Iniciar revisão
               </Button>
             </div>
+            <div className="flex items-center px-5 minMd:col-span-3 xl:overflow-x-scroll">
+              <HeatMap />
+            </div>
           </div>
-        </div>
-        <div>
-          <HeatMap />
         </div>
       </div>
       {modal}
