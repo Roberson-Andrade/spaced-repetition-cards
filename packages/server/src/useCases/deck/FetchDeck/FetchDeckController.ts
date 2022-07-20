@@ -12,7 +12,7 @@ export class FetchDeckController {
     try {
       const decks = await this.fetchDeck.execute();
 
-      return response.status(200).send(decks);
+      return response.status(200).json(decks);
     } catch (error) {
       return response.status(400).json({
         message: error.message || 'Error!',

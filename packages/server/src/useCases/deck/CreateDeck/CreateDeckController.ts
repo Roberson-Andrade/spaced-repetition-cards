@@ -8,13 +8,13 @@ export class CreatedeckController {
     this.createDeck = createDeck;
   }
 
-  async handle(request: Request, response: Response):Promise<Response> {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name, category } = request.body;
 
     try {
       await this.createDeck.execute({ name, category });
 
-      return response.status(201).send();
+      return response.status(201).json();
     } catch (error) {
       return response.status(400).json({
         message: error.message || 'Error!',

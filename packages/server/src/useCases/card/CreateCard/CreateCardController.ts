@@ -18,7 +18,7 @@ export class CreateCardController {
 
       await this.createCard.execute({ answer, description, deckId });
 
-      return response.status(201).send();
+      return response.status(201).json();
     } catch (error) {
       return response.status(400).json({
         message: error.message || 'Error!',
