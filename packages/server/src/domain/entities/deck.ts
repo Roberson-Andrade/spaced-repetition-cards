@@ -10,6 +10,10 @@ export class Deck {
 
   public cards?: Card[];
 
+  public totalCards?: number;
+
+  public overdueCards?: number;
+
   public createdAt?: Date;
 
   public updatedAt?: Date;
