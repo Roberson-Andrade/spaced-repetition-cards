@@ -41,18 +41,27 @@ export const createCard = ({
   .set('numberOfRevisions', numberOfRevisions || 0)
   .toString();
 
-export const fetchCard = (deckId: string) => squel
-  .select()
-  .field('id')
-  .field('description')
-  .field('answer')
-  .field('created_at', 'createdAt')
-  .field('updated_at', 'updatedAt')
-  .field('lastRevision', 'lastRevision')
-  .field('numberOfRevisions', 'numberOfRevisions')
-  .from('card')
-  .where('deckId = ?', deckId)
-  .toString();
+export const fetchCard = (deckId: string | string[]) => {
+  const query = squel
+    .select()
+    .field('id')
+    .field('deckid', 'deckId')
+    .field('description')
+    .field('answer')
+    .field('created_at', 'createdAt')
+    .field('updated_at', 'updatedAt')
+    .field('lastRevision', 'lastRevision')
+    .field('numberOfRevisions', 'numberOfRevisions')
+    .from('card');
+
+  if (Array.isArray(deckId)) {
+    query.where('deckId IN ?', deckId);
+  } else {
+    query.where('deckId = ?', deckId);
+  }
+
+  return query.toString();
+};
 
 export const deleteCard = (cardId: string) => squel
   .delete()

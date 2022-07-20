@@ -1,10 +1,14 @@
 import { Pool } from 'pg';
 import pool from '../../config/database';
+import { Card } from '../../domain/entities/card';
 import { Deck } from '../../domain/entities/deck';
-import {
-  createDeck, deleteDeck, fetchCard, fetchDeck,
-} from './db';
 import { IDeckRepository } from '../IDeckRepository';
+import {
+  createDeck,
+  deleteDeck,
+  fetchCard,
+  fetchDeck
+} from './db';
 
 export class PostgresDeckRepository implements IDeckRepository {
   private pool: Pool
@@ -30,13 +34,13 @@ export class PostgresDeckRepository implements IDeckRepository {
     try {
       const { rows } = await client.query(fetchDeck());
 
-      const cards = await Promise.all(
-        rows.map((deck: Deck) => client.query(fetchCard(deck.id))),
-      );
+      const deckIds = rows.map((deck: Deck) => deck.id);
 
-      const decks = rows.map((deck, i) => ({
+      const cards = await client.query(fetchCard(deckIds));
+
+      const decks = rows.map((deck: Deck) => ({
         ...deck,
-        cards: cards[i].rows,
+        cards: cards.rows.filter((card: Card) => card.deckId === deck.id),
       }));
 
       return decks;
