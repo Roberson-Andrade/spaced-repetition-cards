@@ -12,9 +12,15 @@ export class FetchDeck {
   async execute(): Promise<Deck[]> {
     const decks = await this.deckRepository.fetch();
 
-    return decks.map((deck) => ({
-      ...deck,
-      cards: TimerUtils.updateRevisionStatus(deck.cards),
-    }));
+    return decks.map((deck) => {
+      const cards = TimerUtils.updateRevisionStatus(deck.cards);
+
+      return {
+        ...deck,
+        cards,
+        totalCards: cards.length,
+        overdueCards: cards.filter((card) => card.revisionStatus === 'OVERDUE').length
+      };
+    });
   }
 }
