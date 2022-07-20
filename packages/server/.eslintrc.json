@@ -16,7 +16,8 @@
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "no-useless-constructor": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "comma-dangle": "off"
   },
   "ignorePatterns": [
     "*.config.ts",
