@@ -17,7 +17,6 @@ function SideBar() {
   const [open, setOpen] = useState(true);
   const navigate = useNavigate();
   const screenWidth = useWindowWidth();
-  console.log(screenWidth);
 
   const openModalHandler = () => {
     setOpenModal(true);
