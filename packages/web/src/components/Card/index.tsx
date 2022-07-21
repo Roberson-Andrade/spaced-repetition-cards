@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
@@ -90,14 +91,13 @@ function Card({
           <div className="flex flex-col gap-5 py-4 px-2 h-full w-full absolute backface-hidden">
             <header className="flex justify-between items-center text-gray-500">
               <div className="text-[12px]">
-                {createdAt}
+                {format(new Date(createdAt as string), "dd/MM/yyy") }
               </div>
               <div className="text-[14px] font-semibold">{deckName}</div>
             </header>
-
-            <div className="text-[15px] p-3 text-center">
+            <p className="text-[15px] p-3 text-center break-words overflow-y-auto">
               {front}
-            </div>
+            </p>
 
             {showLeftButton && (
             <IconButton onClick={onClickPreviousBtn}>
@@ -119,12 +119,12 @@ function Card({
           <div className="flex flex-col gap-5 py-4 px-2 h-full w-full absolute rotate-y-180 backface-hidden">
             <header className="flex justify-between items-center text-gray-500">
               <div className="text-[12px]">
-                {createdAt}
+                {format(new Date(createdAt as string), "dd/MM/yyy") }
               </div>
               <div className="text-[14px] font-semibold">{deckName}</div>
             </header>
 
-            <div className="text-[15px] p-3 text-center">
+            <div className="text-[15px] p-3 text-center break-words overflow-y-auto">
               {back}
             </div>
 
