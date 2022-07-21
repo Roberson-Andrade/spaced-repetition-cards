@@ -1,16 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import { useStore } from "../../store";
 import Select from "../Select/Index";
-
-const decks = [
-  "Física",
-  "ENEM",
-  "Inglês",
-  "Matemática",
-  "História",
-  "Direito Constitucional",
-];
 
 type CardFormProps = {
   onCloseModal: () => void;
@@ -21,6 +13,8 @@ function CardForm({ onCloseModal }: CardFormProps) {
   const [backValue, setbackValue] = useState("");
   const [deckValue, setDeckValue] = useState("");
   const [tagValue, setTagValue] = useState("");
+  const decks = useStore((state) => state.decks);
+  const createCard = useStore((state) => state.createCard);
 
   const frontInputHandler = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setfrontValue(target.value);
@@ -38,12 +32,27 @@ function CardForm({ onCloseModal }: CardFormProps) {
     setTagValue(target.value);
   };
 
+  const resetInputs = () => {
+    setfrontValue("");
+    setbackValue("");
+    setDeckValue("");
+    setTagValue("");
+  };
+
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("frontValue", frontValue);
-    console.log("backValue", backValue);
-    console.log("deckValue", deckValue);
-    console.log("tagValue", tagValue);
+    if (!frontValue || !backValue) {
+      return;
+    }
+
+    createCard({
+      deckId: decks.find((deck) => deck.name === deckValue)?.id as string,
+      front: frontValue,
+      back: backValue,
+      tag: tagValue,
+      deckName: deckValue
+    });
+    resetInputs();
   };
 
   return (
@@ -74,7 +83,7 @@ function CardForm({ onCloseModal }: CardFormProps) {
       <Select
         id="deck"
         label="Deck"
-        options={decks}
+        options={decks.map((deck) => deck.name)}
         value={deckValue}
         onChange={deckInputHandler}
       />

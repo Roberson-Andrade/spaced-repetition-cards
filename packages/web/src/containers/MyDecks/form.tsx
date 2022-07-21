@@ -3,11 +3,13 @@ import {
 } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import { useStore } from "../../store";
 import { DeckFormProps } from "../../types";
 
 function DeckForm({ onCloseModal }: DeckFormProps) {
   const [nameValue, setNameValue] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
+  const createDeck = useStore((state) => state.createDeck);
 
   const nameInputHandler = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setNameValue(target.value);
@@ -17,10 +19,18 @@ function DeckForm({ onCloseModal }: DeckFormProps) {
     setCategoryValue(target.value);
   };
 
-  const submitHandler = (event: FormEvent<HTMLFormElement>) => {
+  const resetInputs = () => {
+    setNameValue("");
+    setCategoryValue("");
+  };
+
+  const submitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("nameValue", nameValue);
-    console.log("categoryValue", categoryValue);
+    if (nameValue === "" || categoryValue === "") {
+      return;
+    }
+    createDeck(nameValue, categoryValue);
+    resetInputs();
   };
 
   return (
