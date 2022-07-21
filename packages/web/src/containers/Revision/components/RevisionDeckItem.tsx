@@ -15,7 +15,7 @@ function RevisionDeckItem({
     name,
     category,
     totalCards,
-    cardsOverDue
+    overdueCards
   },
   onClick
 }:DeckItemProps) {
@@ -34,7 +34,7 @@ function RevisionDeckItem({
 
       <div className="flex items-center gap-5 sm:w-full">
         <Tooltip text="Cards a revisar">
-          <Badge className="bg-[#ffc107] p-2 w-[35px] flex-center text-[14px]">{cardsOverDue}</Badge>
+          <Badge className="bg-[#ffc107] p-2 w-[35px] flex-center text-[14px]">{overdueCards}</Badge>
         </Tooltip>
         <Tooltip text="Numero de cards">
           <Badge className="p-2 w-[35px] flex-center text-[14px]">{totalCards}</Badge>
