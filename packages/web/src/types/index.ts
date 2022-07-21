@@ -1,14 +1,5 @@
 import React from "react";
 
-export type Deck = {
-    id: string;
-    name: string;
-    category: string;
-    totalCards?: number;
-    cardsOverDue?: number;
-    createdAt?: string;
-}
-
 export type CardType = {
     readonly id: string;
     readonly deckId: string;
@@ -18,9 +9,18 @@ export type CardType = {
     numberOfRevisions?: number;
     revisionStatus?: "UP_TO_DATE" | "OVERDUE"
     createdAt?: string;
-    updatedAt?: string;
     tag?: string;
     deckName: string;
+}
+
+export type Deck = {
+    readonly id: string;
+    name: string;
+    category: string;
+    cards?: CardType[];
+    totalCards?: number;
+    overdueCards?: number;
+    createdAt?: string;
 }
 
 export type ModalProps = {
@@ -35,4 +35,12 @@ export type ModalProps = {
 
 export type DeckFormProps = {
     onCloseModal: () => void;
+}
+
+export type CardData = {
+    deckId: string;
+    front: string;
+    back: string;
+    deckName: string;
+    tag?: string;
 }
