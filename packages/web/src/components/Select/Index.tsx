@@ -29,7 +29,7 @@ function Select({
         onChange={onChange}
         className="rounded-md border h-10 focus:outline-none border-blue-200 focus:border-blue-400 focus:border-2 py-1 px-2"
       >
-        {options.map((option) => (<option value={option}>{option}</option>))}
+        {options.map((option) => (<option key={option} value={option}>{option}</option>))}
       </select>
     </div>
   );
