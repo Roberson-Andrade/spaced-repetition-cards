@@ -23,6 +23,12 @@
     "comma-dangle": "off",
     "quotes": ["error", "double"],
     "react/button-has-type": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/no-unused-vars": [
+      2,
+      {
+        "args": "none"
+      }
+    ]
   }
 }
