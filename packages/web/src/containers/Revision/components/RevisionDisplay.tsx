@@ -34,6 +34,9 @@ function RevisionDisplay({ items, stopRevision }: RevisionDisplayProps) {
     setCards((prevState) => {
       const newState = [...prevState];
       newState.splice(cardIndex, 1);
+      if (cardIndex === cards.length - 1 && cardIndex !== 0) {
+        setSelected((previousState) => previousState - 1);
+      }
       return newState;
     });
   };
