@@ -1,5 +1,7 @@
 export interface CreateCardRequestDTO {
-  description: string;
-  answer: string;
+  front: string;
+  back: string;
   deckId: string;
+  deckName: string;
+  tag?: string;
 }

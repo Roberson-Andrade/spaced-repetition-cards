@@ -28,16 +28,20 @@ export const deleteDeck = (deckId: string) => squel
 export const createCard = ({
   id,
   deckId,
-  answer,
-  description,
+  deckName,
+  back,
+  front,
   numberOfRevisions,
+  tag
 }: Card) => squel
   .insert()
   .into('card')
   .set('id', id)
   .set('deckId', deckId)
-  .set('answer', answer)
-  .set('description', description)
+  .set('deckName', deckName)
+  .set('back', back)
+  .set('front', front)
+  .set('tag', tag || null)
   .set('numberOfRevisions', numberOfRevisions || 0)
   .toString();
 
@@ -46,11 +50,12 @@ export const fetchCard = (deckId: string | string[]) => {
     .select()
     .field('id')
     .field('deckid', 'deckId')
-    .field('description')
-    .field('answer')
+    .field('deckName', 'deckName')
+    .field('front')
+    .field('back')
     .field('created_at', 'createdAt')
-    .field('updated_at', 'updatedAt')
     .field('lastRevision', 'lastRevision')
+    .field('tag')
     .field('numberOfRevisions', 'numberOfRevisions')
     .from('card');
 
@@ -62,6 +67,21 @@ export const fetchCard = (deckId: string | string[]) => {
 
   return query.toString();
 };
+
+export const getCardById = (cardId: string) => squel
+  .select()
+  .field('id')
+  .field('deckid', 'deckId')
+  .field('deckName', 'deckName')
+  .field('front')
+  .field('back')
+  .field('created_at', 'createdAt')
+  .field('lastRevision', 'lastRevision')
+  .field('tag')
+  .field('numberOfRevisions', 'numberOfRevisions')
+  .from('card')
+  .where('id = ?', cardId)
+  .toString();
 
 export const deleteCard = (cardId: string) => squel
   .delete()

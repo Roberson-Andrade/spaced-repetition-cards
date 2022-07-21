@@ -1,9 +1,9 @@
 import { Pool } from 'pg';
+import pool from '../../config/database';
 import { Card } from '../../domain/entities/card';
 import { ICardRepository } from '../ICardRepository';
-import pool from '../../config/database';
 import {
-  createCard, deleteCard, fetchCard, updateCardRevision,
+  createCard, deleteCard, fetchCard, getCardById, updateCardRevision
 } from './db';
 
 export class PostgresCardRepository implements ICardRepository {
@@ -17,8 +17,10 @@ export class PostgresCardRepository implements ICardRepository {
     const client = await this.pool.connect();
 
     try {
-      const response = await client.query(createCard(card));
-      return response.rows[0];
+      await client.query(createCard(card));
+      const { rows } = await client.query(getCardById(card.id));
+
+      return rows[0];
     } finally {
       client.release();
     }

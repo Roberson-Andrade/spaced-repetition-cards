@@ -5,9 +5,13 @@ export class Card {
 
   public readonly deckId: string;
 
-  public description: string;
+  public readonly deckName: string
 
-  public answer: string;
+  public front: string;
+
+  public back: string;
+
+  public tag?: string;
 
   public lastRevision?: Date;
 
