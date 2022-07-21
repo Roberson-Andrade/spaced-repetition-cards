@@ -21,8 +21,9 @@ export class PostgresDeckRepository implements IDeckRepository {
     const client = await this.pool.connect();
 
     try {
-      const response = await client.query(createDeck(deck));
-      return response.rows[0];
+      const { rows } = await client.query(createDeck(deck));
+
+      return rows[0];
     } finally {
       client.release();
     }

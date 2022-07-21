@@ -12,9 +12,9 @@ export class CreatedeckController {
     const { name, category } = request.body;
 
     try {
-      await this.createDeck.execute({ name, category });
+      const createdDeck = await this.createDeck.execute({ name, category });
 
-      return response.status(201).json();
+      return response.status(201).json(createdDeck);
     } catch (error) {
       return response.status(400).json({
         message: error.message || 'Error!',

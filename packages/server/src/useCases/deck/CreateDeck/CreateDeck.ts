@@ -16,6 +16,6 @@ export class CreateDeck {
 
     const deck = new Deck({ name, category });
 
-    await this.deckRepository.save(deck);
+    return this.deckRepository.save(deck);
   }
 }
