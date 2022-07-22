@@ -21,5 +21,8 @@ export class Deck {
   constructor(props?: Omit<Deck, 'id'>, id?: string) {
     Object.assign(this, props);
     this.id = id ?? uuidv4();
+    this.totalCards = props.overdueCards || 0;
+    this.overdueCards = props.overdueCards || 0;
+    this.cards = props.cards || [];
   }
 }
