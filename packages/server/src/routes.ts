@@ -12,7 +12,7 @@ const router = Router();
 router.get('/cards/:deckId', (request, response) => fetchCardController.handle(request, response));
 router.post('/cards', (request, response) => createCardController.handle(request, response));
 router.delete('/cards/:cardId', (request, response) => deleteCardController.handle(request, response));
-router.patch('/cards/:cardId', (request, response) => updateCardRevisionController.handle(request, response));
+router.post('/cards/revise', (request, response) => updateCardRevisionController.handle(request, response));
 
 router.get('/decks', (request, response) => fetchDeckController.handle(request, response));
 router.post('/decks', (request, response) => createDeckController.handle(request, response));
