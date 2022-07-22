@@ -1,8 +1,12 @@
 import {
   ChangeEvent, FormEvent, useState
 } from "react";
+import { AiOutlineLoading } from "react-icons/ai";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import { defaultToast } from "../../constants/toastify";
 import { useStore } from "../../store";
 import { DeckFormProps } from "../../types";
 
@@ -10,6 +14,7 @@ function DeckForm({ onCloseModal }: DeckFormProps) {
   const [nameValue, setNameValue] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
   const createDeck = useStore((state) => state.createDeck);
+  const [loading, setLoading] = useState(false);
 
   const nameInputHandler = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setNameValue(target.value);
@@ -29,7 +34,21 @@ function DeckForm({ onCloseModal }: DeckFormProps) {
     if (nameValue === "" || categoryValue === "") {
       return;
     }
-    createDeck(nameValue, categoryValue);
+    setLoading(true);
+    createDeck(
+      {
+        name: nameValue,
+        category: categoryValue
+      },
+      (error) => {
+        setLoading(false);
+        if (error) {
+          toast.error(error || "Erro interno", defaultToast);
+          return;
+        }
+        toast.success("Deck criado com sucesso!", defaultToast);
+      }
+    );
     resetInputs();
   };
 
@@ -55,12 +74,12 @@ function DeckForm({ onCloseModal }: DeckFormProps) {
       />
 
       <div className="flex justify-end mt-auto">
-        <Button onClick={onCloseModal}>
+        <Button onClick={onCloseModal} disabled={loading}>
           Voltar
         </Button>
         <span className="w-2" />
-        <Button type="submit">
-          Criar
+        <Button type="submit" disabled={loading}>
+          {loading ? <AiOutlineLoading className="animate-spin" /> : "Criar"}
         </Button>
       </div>
     </form>
