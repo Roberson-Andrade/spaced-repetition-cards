@@ -89,10 +89,10 @@ export const deleteCard = (cardId: string) => squel
   .where('id = ?', cardId)
   .toString();
 
-export const updateCardRevision = (cardId: string) => squel
+export const updateCardRevision = (cardId: string[]) => squel
   .update()
   .table('card')
   .set('numberOfRevisions = numberOfRevisions + 1')
   .set('lastRevision', formatISO9075(new Date()))
-  .where('id = ?', cardId)
+  .where('id IN ?', cardId)
   .toString();

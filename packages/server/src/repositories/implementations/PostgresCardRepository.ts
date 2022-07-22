@@ -48,7 +48,7 @@ export class PostgresCardRepository implements ICardRepository {
     }
   }
 
-  async updateRevision(cardId: string): Promise<void> {
+  async updateRevision(cardId: string[]): Promise<void> {
     const client = await this.pool.connect();
 
     try {

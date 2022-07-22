@@ -9,9 +9,10 @@ export class UpdateCardRevisionController {
   }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { cardId } = request.params;
+    const { cardIds } = request.body;
+
     try {
-      await this.updateCardRevision.execute(cardId);
+      await this.updateCardRevision.execute(cardIds);
 
       return response.status(200).json();
     } catch (error) {

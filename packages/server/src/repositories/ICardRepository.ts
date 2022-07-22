@@ -5,5 +5,5 @@ export interface ICardRepository {
   save(card: Card): Promise<Card>
   fetch(deckId: string): Promise<Card[]>
   delete(cardId: string): Promise<number>
-  updateRevision(cardId: string): Promise<void>
+  updateRevision(cardId: string[]): Promise<void>
 }
