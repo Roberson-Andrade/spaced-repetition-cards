@@ -1,6 +1,7 @@
 import axios from "axios";
 import create from "zustand";
 import { CardData, CardType, Deck } from "../types";
+import { updateRevisionStore } from "./utils";
 
 type deckState = {
   decks: Deck[] | [];
@@ -15,10 +16,11 @@ type deckState = {
     callback: (error: string | null) => void
   ) => void;
   createCard: (cardData: CardData, callback: (error: string | null) => void) => void;
-  fetchDecks: () => void;
-  createDeck: (name: string, category: string) => void;
-  deleteDeck: (deckId: string) => void;
-  createCard: (cardData: CardData) => void;
+  updateCardRevision: (
+    cardIds: string[],
+    deckId: string,
+    callback: (error: string | null) => void
+  ) => void;
 }
 
 export const useStore = create<deckState>()((set) => ({
@@ -28,9 +30,9 @@ export const useStore = create<deckState>()((set) => ({
     try {
       const { data } = await axios.get("http://127.0.0.1:3000/decks");
       const decks: Deck[] = data;
-    const cards = decks.map((deck) => deck.cards).flat();
+      const cards = decks.map((deck) => deck.cards).flat();
       callback(null);
-    set({ decks, cards: cards as CardType[] });
+      set({ decks, cards: cards as CardType[] });
     } catch (error) {
       callback((error as Error).message);
     }
@@ -45,7 +47,7 @@ export const useStore = create<deckState>()((set) => ({
     try {
       const { data: createdDeck } = await axios.request(reqOptions);
 
-    set((state) => ({ decks: [...state.decks, createdDeck] }));
+      set((state) => ({ decks: [...state.decks, createdDeck] }));
       callback(null, true);
     } catch (error) {
       callback((error as Error).message, false);
@@ -78,22 +80,51 @@ export const useStore = create<deckState>()((set) => ({
       const { data: createdCard } = await axios.request(reqOptions);
 
       callback(null);
-    set((state) => {
-      const newDeckArray = [...state.decks];
-      const deckIndex = newDeckArray.findIndex((deck) => deck.id === cardData.deckId);
-      const newDeck: Deck = {
-        ...newDeckArray[deckIndex],
-        totalCards: newDeckArray[deckIndex].totalCards as number + 1,
-        overdueCards: newDeckArray[deckIndex].overdueCards as number + 1,
-        cards: [...newDeckArray[deckIndex].cards as CardType[], createdCard]
-      };
-      newDeckArray[deckIndex] = newDeck;
+      set((state) => {
+        const newDeckArray = [...state.decks];
+        const deckIndex = newDeckArray.findIndex((deck) => deck.id === cardData.deckId);
+        const newDeck: Deck = {
+          ...newDeckArray[deckIndex],
+          totalCards: newDeckArray[deckIndex].totalCards as number + 1,
+          overdueCards: newDeckArray[deckIndex].overdueCards as number + 1,
+          cards: [...newDeckArray[deckIndex].cards as CardType[], createdCard]
+        };
+        newDeckArray[deckIndex] = newDeck;
 
-      return ({ decks: newDeckArray, cards: [...state.cards, createdCard] });
-    });
+        return ({ decks: newDeckArray, cards: [...state.cards, createdCard] });
+      });
     } catch (error) {
       callback((error as Error).message);
     }
   },
+  updateCardRevision: async (cardIds, deckId, callback) => {
+    const reqOptions = {
+      url: "http://127.0.0.1:3000/cards/revise",
+      method: "POST",
+      data: {
+        cardIds
+      },
+    };
+
+    try {
+      await axios.request(reqOptions);
+      callback(null);
+      set((state) => ({
+        cards: updateRevisionStore(state.cards, cardIds),
+        decks: state.decks.map((deck) => {
+          if (deck.id === deckId) {
+            const updatedCards = updateRevisionStore(deck.cards as CardType[], cardIds);
+            return {
+              ...deck,
+              overdueCards: deck.overdueCards as number - cardIds.length,
+              cards: updatedCards
+            };
+          }
+          return deck;
+        })
+      }));
+    } catch (error) {
+      callback((error as Error).message);
+    }
   }
 }));
