@@ -34,16 +34,17 @@ function RevisionDeckItem({
 
       <div className="flex items-center gap-5 sm:w-full">
         <Tooltip text="Cards a revisar">
-          <Badge className="bg-[#ffc107] p-2 w-[35px] flex-center text-[14px]">{overdueCards}</Badge>
+          <Badge className="bg-[#ffc107] p-2 w-[35px] flex-center text-[14px]">{overdueCards || "0"}</Badge>
         </Tooltip>
         <Tooltip text="Numero de cards">
-          <Badge className="p-2 w-[35px] flex-center text-[14px]">{totalCards}</Badge>
+          <Badge className="p-2 w-[35px] flex-center text-[14px]">{totalCards || "0"}</Badge>
         </Tooltip>
 
         <Tooltip text="Revisar" className="sm:ml-auto">
           <IconButton
             onClick={onClick}
-            className="hover:bg-slate-100/10"
+            className={`${!(overdueCards) ? "" : "hover:bg-slate-100/10"}`}
+            disabled={!(overdueCards)}
           >
             <BiRevision className="inline-block" size="25px" />
           </IconButton>
