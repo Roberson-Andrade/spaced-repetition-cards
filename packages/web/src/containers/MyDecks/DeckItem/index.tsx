@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { IoMdTrash } from "react-icons/io";
+import { VscLoading } from "react-icons/vsc";
+import { toast } from "react-toastify";
 import Badge from "../../../components/Badge";
 import IconButton from "../../../components/IconButton";
+import { defaultToast } from "../../../constants/toastify";
 import { useStore } from "../../../store";
 import { Deck } from "../../../types";
 
@@ -9,9 +13,20 @@ type DeckItemProps = {
 }
 
 function DeckItem({ item: { name, category, id } }:DeckItemProps) {
+  const [loading, setLoading] = useState(false);
   const deleteDeck = useStore((state) => state.deleteDeck);
   const deleteDeckHandler = () => {
-    deleteDeck(id);
+    setLoading(true);
+
+    deleteDeck(id, (error) => {
+      setLoading(false);
+      if (error) {
+        toast.error(error, defaultToast);
+        return;
+      }
+
+      toast.success("Deck deletado com sucesso!", defaultToast);
+    });
   };
   return (
     <li
@@ -27,7 +42,7 @@ function DeckItem({ item: { name, category, id } }:DeckItemProps) {
       </div>
 
       <IconButton onClick={deleteDeckHandler} className="hover:bg-slate-100/10">
-        <IoMdTrash className="inline-block" size="25px" />
+        {loading ? <VscLoading size="25px" className="animate-spin" /> : <IoMdTrash className="inline-block" size="25px" />}
       </IconButton>
     </li>
   );
