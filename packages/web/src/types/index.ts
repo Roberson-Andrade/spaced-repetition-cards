@@ -44,3 +44,8 @@ export type CardData = {
     deckName: string;
     tag?: string;
 }
+
+export type RevisionRequestDataType = {
+    revisedCards: string[];
+    deckId: string;
+}
