@@ -26,8 +26,8 @@ export class Card {
   constructor(props: Omit<Card, 'id'>, id?: string) {
     Object.assign(this, props);
 
-    this.numberOfRevisions = this.numberOfRevisions ?? 0;
-    this.lastRevision = this.lastRevision ?? new Date();
+    this.numberOfRevisions = props.numberOfRevisions ?? 0;
+    this.lastRevision = props.lastRevision ?? new Date();
     this.id = id ?? uuidv4();
   }
 }
