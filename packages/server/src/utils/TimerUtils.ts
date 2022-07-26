@@ -3,6 +3,9 @@ import { Card } from '../domain/entities/card';
 
 export class TimerUtils {
   static updateRevisionStatus(cards: Card[]): Card[] {
+    if (!cards.length) {
+      return [];
+    }
     const updatedCards = cards.map((card) => {
       if (!card.lastRevision) {
         return { ...card, revisionStatus: 'OVERDUE' } as Card;
