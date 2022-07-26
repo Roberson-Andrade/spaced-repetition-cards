@@ -1,4 +1,5 @@
-import { CardType } from "../types";
+import { isSameDay } from "date-fns";
+import { CardType, RevisionStats } from "../types";
 
 export const updateRevisionStore = (
   cards: CardType[],
@@ -11,3 +12,22 @@ export const updateRevisionStore = (
     lastRevision: new Date()
   }
   : { ...card }));
+
+export const updateRevisionStats = (
+  revisions: RevisionStats[],
+  newRevision: RevisionStats
+) => {
+  const newRevisions = [...revisions];
+  const revisionIndex = newRevisions.findIndex((revision) => isSameDay(
+    revision.date,
+    newRevision.date
+  ));
+
+  if (revisionIndex === -1) {
+    return [...newRevisions, newRevision];
+  }
+
+  newRevisions[revisionIndex].numberOfRevisedCards += newRevision.numberOfRevisedCards;
+
+  return newRevisions;
+};
