@@ -22,8 +22,8 @@ export class PostgresDeckRepository implements IDeckRepository {
 
     try {
       const { rows } = await client.query(createDeck(deck));
-
-      return rows[0];
+      const newDeck = new Deck(rows[0], rows[0].id);
+      return newDeck;
     } finally {
       client.release();
     }
@@ -34,6 +34,10 @@ export class PostgresDeckRepository implements IDeckRepository {
 
     try {
       const { rows } = await client.query(fetchDeck());
+
+      if (!rows.length) {
+        return [];
+      }
 
       const deckIds = rows.map((deck: Deck) => deck.id);
 
