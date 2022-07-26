@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.131.0",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
