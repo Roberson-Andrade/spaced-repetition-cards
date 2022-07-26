@@ -8,6 +8,7 @@ import { useStore } from "./store";
 
 function App() {
   const fetchDecks = useStore((state) => state.fetchDecks);
+  const fetchRevisions = useStore((state) => state.fetchRevisions);
   const [loading, setLoading] = useState(true);
 
   const stopLoadingHandler = (error: string | null) => {
@@ -18,6 +19,11 @@ function App() {
   };
   useEffect(() => {
     fetchDecks(stopLoadingHandler);
+    fetchRevisions((error: string | null) => {
+      if (error) {
+        toast.error(error || "Erro interno", defaultToast);
+      }
+    });
   }, []);
   return (
     <div className="flex text-slate-700">
