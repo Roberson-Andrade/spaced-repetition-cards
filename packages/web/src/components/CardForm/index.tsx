@@ -15,7 +15,7 @@ function CardForm({ onCloseModal }: CardFormProps) {
   const decks = useStore((state) => state.decks);
   const [frontValue, setfrontValue] = useState("");
   const [backValue, setbackValue] = useState("");
-  const [deckValue, setDeckValue] = useState(decks[0].name);
+  const [deckValue, setDeckValue] = useState(decks[0]?.name || "");
   const [tagValue, setTagValue] = useState("");
   const createCard = useStore((state) => state.createCard);
   const [loading, setLoading] = useState(false);
