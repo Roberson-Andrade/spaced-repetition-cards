@@ -1,11 +1,15 @@
 import axios from "axios";
+import { format, parseISO } from "date-fns";
 import create from "zustand";
-import { CardData, CardType, Deck } from "../types";
-import { updateRevisionStore } from "./utils";
+import {
+  CardData, CardType, Deck, RevisionRequest, RevisionResponse, RevisionStats
+} from "../types";
+import { updateRevisionStats, updateRevisionStore } from "./utils";
 
 type deckState = {
-  decks: Deck[] | [];
-  cards: CardType[] | []
+  decks: Deck[];
+  cards: CardType[];
+  revisionStats: RevisionStats[];
   fetchDecks: (callback: (error: string | null) => void) => void;
   createDeck: (
     payload: { name: string, category: string },
@@ -16,16 +20,18 @@ type deckState = {
     callback: (error: string | null) => void
   ) => void;
   createCard: (cardData: CardData, callback: (error: string | null) => void) => void;
-  updateCardRevision: (
+  updateRevision: (
     cardIds: string[],
     deckId: string,
     callback: (error: string | null) => void
   ) => void;
+  fetchRevisions: (callback: (error: string | null) => void) => void;
 }
 
 export const useStore = create<deckState>()((set) => ({
   decks: [],
   cards: [],
+  revisionStats: [],
   fetchDecks: async (callback) => {
     try {
       const { data } = await axios.get("http://127.0.0.1:3000/decks");
@@ -47,6 +53,7 @@ export const useStore = create<deckState>()((set) => ({
     try {
       const { data: createdDeck } = await axios.request(reqOptions);
 
+      console.log(createdDeck);
       set((state) => ({ decks: [...state.decks, createdDeck] }));
       callback(null, true);
     } catch (error) {
@@ -97,12 +104,19 @@ export const useStore = create<deckState>()((set) => ({
       callback((error as Error).message);
     }
   },
-  updateCardRevision: async (cardIds, deckId, callback) => {
+  updateRevision: async (cardIds, deckId, callback) => {
+    const revisionDate = format(new Date(), "yyyy-MM-dd");
+    const revision: RevisionRequest = {
+      numberOfRevision: cardIds.length,
+      revisionDate
+    };
+
     const reqOptions = {
-      url: "http://127.0.0.1:3000/cards/revise",
+      url: "http://127.0.0.1:3000/revision",
       method: "POST",
       data: {
-        cardIds
+        cardIds,
+        revision
       },
     };
 
@@ -121,8 +135,35 @@ export const useStore = create<deckState>()((set) => ({
             };
           }
           return deck;
+        }),
+        revisionStats: updateRevisionStats(state.revisionStats, {
+          date: new Date(),
+          numberOfRevisedCards: cardIds.length
         })
       }));
+    } catch (error) {
+      callback((error as Error).message);
+    }
+  },
+  fetchRevisions: async (callback) => {
+    const reqOptions = {
+      url: "http://127.0.0.1:3000/revision",
+      method: "GET"
+    };
+
+    try {
+      const { data }: { data: RevisionResponse[] } = await axios.request(reqOptions);
+      console.log(data);
+
+      const revisionStats: RevisionStats[] = data.map(
+        (revision): RevisionStats => ({
+          date: parseISO(revision.date),
+          numberOfRevisedCards: parseInt(revision.numberOfRevision, 10)
+        })
+      );
+
+      callback(null);
+      set({ revisionStats });
     } catch (error) {
       callback((error as Error).message);
     }
