@@ -88,7 +88,7 @@ function Card({
         <article
           className="h-full w-full bg-white rounded-md shadow-md hover:shadow-xl hover:translate-y-[-3px] relative transform-style-3d transition-transform cursor-pointer"
         >
-          <div className="flex flex-col gap-5 py-4 px-2 h-full w-full absolute backface-hidden">
+          <div className="flex flex-col gap-5 p-2 h-full w-full absolute backface-hidden">
             <header className="flex justify-between items-center text-gray-500">
               <div className="text-[12px]">
                 {format(new Date(createdAt as string), "dd/MM/yyy") }
@@ -116,7 +116,7 @@ function Card({
             </footer>
           </div>
 
-          <div className="flex flex-col gap-5 py-4 px-2 h-full w-full absolute rotate-y-180 backface-hidden">
+          <div className="flex flex-col gap-5 p-2 h-full w-full absolute rotate-y-180 backface-hidden">
             <header className="flex justify-between items-center text-gray-500">
               <div className="text-[12px]">
                 {format(new Date(createdAt as string), "dd/MM/yyy") }
