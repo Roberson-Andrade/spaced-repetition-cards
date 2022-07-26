@@ -5,6 +5,7 @@ import Card from "../../components/Card";
 import CardForm from "../../components/CardForm";
 import FormModal from "../../components/FormModal";
 import Input from "../../components/Input";
+import { useConfirmModal } from "../../hooks/useConfirmModal";
 import { useWindowWidth } from "../../hooks/useScreenWidth";
 import { useStore } from "../../store";
 import { CardType } from "../../types";
@@ -12,8 +13,10 @@ import { CardType } from "../../types";
 function MyCards() {
   const [searchValue, setSearchValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [modal, createModal] = useConfirmModal();
   const screenWidth = useWindowWidth();
   const cards = useStore((state) => state.cards);
+  const decks = useStore((state) => state.decks);
   const changeSearchHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
@@ -27,6 +30,14 @@ function MyCards() {
   };
 
   const openModalHandler = () => {
+    if (!decks.length) {
+      createModal({
+        title: "Nenhum deck encontrado!",
+        description: "Para criar um card é preciso ter um deck primeiro.",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
     setOpenModal(true);
   };
   const closeModalHandler = () => {
@@ -76,6 +87,7 @@ function MyCards() {
       <FormModal open={openModal}>
         <CardForm onCloseModal={closeModalHandler} />
       </FormModal>
+      {modal}
     </>
   );
 }

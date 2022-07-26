@@ -5,7 +5,9 @@ import { GiCardBurn, GiPapers } from "react-icons/gi";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { IoHomeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { useConfirmModal } from "../../hooks/useConfirmModal";
 import { useWindowWidth } from "../../hooks/useScreenWidth";
+import { useStore } from "../../store";
 import Button from "../Button";
 import CardForm from "../CardForm";
 import FormModal from "../FormModal";
@@ -15,10 +17,20 @@ import SidebarMobileButton from "./SidebarMobileButton";
 function SideBar() {
   const [openModal, setOpenModal] = useState(false);
   const [open, setOpen] = useState(true);
+  const [modal, createModal] = useConfirmModal();
   const navigate = useNavigate();
   const screenWidth = useWindowWidth();
+  const decks = useStore((state) => state.decks);
 
   const openModalHandler = () => {
+    if (!decks.length) {
+      createModal({
+        title: "Nenhum deck encontrado!",
+        description: "Para criar um card é preciso ter um deck primeiro.",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
     setOpenModal(true);
   };
   const closeModalHandler = () => {
@@ -131,6 +143,7 @@ function SideBar() {
       <FormModal open={openModal}>
         <CardForm onCloseModal={closeModalHandler} />
       </FormModal>
+      {modal}
     </>
   );
 }
