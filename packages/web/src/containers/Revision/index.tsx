@@ -12,7 +12,7 @@ function Revision() {
   const [deckUnderRevision, setDeckUnderRevision] = useState<number | null>(null);
   const [modal, createModal] = useConfirmModal();
   const decks = useStore((state) => state.decks);
-  const updateCardRevision = useStore((state) => state.updateCardRevision);
+  const updateRevision = useStore((state) => state.updateRevision);
 
   const deckUnderRevisionHandler = (
     _: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -38,7 +38,7 @@ function Revision() {
       });
     }
     if (requestData.revisedCards.length > 0) {
-      updateCardRevision(requestData.revisedCards, requestData.deckId, (error) => {
+      updateRevision(requestData.revisedCards, requestData.deckId, (error) => {
         if (error) {
           toast.error(error || "Erro interno", defaultToast);
           return;
