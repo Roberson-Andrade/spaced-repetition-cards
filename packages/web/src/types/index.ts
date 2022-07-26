@@ -49,3 +49,18 @@ export type RevisionRequestDataType = {
     revisedCards: string[];
     deckId: string;
 }
+
+export type RevisionRequest = {
+    revisionDate: string;
+    numberOfRevision: number;
+}
+
+export type RevisionResponse = {
+    date: string,
+    numberOfRevision: string
+}
+
+export type RevisionStats = {
+    date: Date,
+    numberOfRevisedCards: number
+}
