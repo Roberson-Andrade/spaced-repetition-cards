@@ -20,7 +20,7 @@ function DeckTable({ items }:DeckTableProps) {
   };
   return (
     <>
-      <div className="h-[90vh] w-[100%] max-w-[800px] mt-5 px-5">
+      <div className="h-[calc(100vh_-_40px)] w-[100%] max-w-[800px] mt-5 px-5">
         <div className="flex justify-between items-center">
           <h3 className="text-2xl">
             Meus decks
