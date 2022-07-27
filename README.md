@@ -5,7 +5,7 @@ Fullstack application to help the process of learning with spaced repetitions.
 ### :scroll: The Project 
 The project consists in the creation of decks of cards that hold information about some topic and the revision of this cards available between intervals.
 How the app works:
-- You can create a deck to attach the cards related to the same object. 
+- You can create a deck to attach the cards related to the same subject. 
 - The card has information on the front (usually a question) and on the back (usually the answer). Also, you can add a option tag as a subcategory.
 - After the creation the card is with the status as overdue (available for revision).
 - There's a revision page where you can revise the overdue cards.
