@@ -74,7 +74,3 @@ export function matchRevisedCalendar(daysOfTheYear: Date[] | RevisionStats[], re
 
   return calendar;
 }
-
-// 366
-// 183 > (183 + 366) / 2 > 274
-// 274
