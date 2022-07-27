@@ -8,6 +8,7 @@ function HeatMap() {
   const dateNow = new Date();
   const pastYear = new Date(new Date().setFullYear(dateNow.getFullYear() - 1));
   const revisions = useStore((state) => state.revisionStats);
+  const cards = useStore((state) => state.cards);
 
   const daysOfTheYear = eachDayOfInterval({
     start: pastYear,
@@ -18,7 +19,11 @@ function HeatMap() {
 
   return (
     <div className="flex flex-col gap-2">
-      <p>Total de cards: 200</p>
+      <p>
+        Total de cards:
+        {" "}
+        {cards.length}
+      </p>
       <div className="grid gap-1 grid-flow-col grid-rows-7 auto-cols-auto">
         {calendar.map((day) => {
           const date = (day as RevisionStats)?.date || day;
@@ -38,28 +43,12 @@ function HeatMap() {
               text={`${revisedCardsMsg} ${date.toLocaleString("pt-BR", {
                 dateStyle: "medium",
               })}`}
+              variant="info-xl"
             >
               <div className={`w-[11px] h-[11px] ${color}`} />
             </Tooltip>
           );
         })}
-      </div>
-      <div className="flex justify-between">
-        <p>
-          Média de cards revisados por dia:
-          {" "}
-          <span className="text-success-900 font-bold">27</span>
-        </p>
-        <p>
-          Maior sequência:
-          {" "}
-          <span className="text-success-900 font-bold">18 dias</span>
-        </p>
-        <p>
-          Sequência atual:
-          {" "}
-          <span className="text-success-900 font-bold">4 dias</span>
-        </p>
       </div>
     </div>
   );
