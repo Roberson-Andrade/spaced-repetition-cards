@@ -15,7 +15,7 @@ function Tooltip({
 
   switch (variant) {
     case "info-xl":
-      classVariant = "text-white bg-black text-[11px] w-[200px] p-1";
+      classVariant = "text-white bg-black text-[12px] whitespace-nowrap p-1";
       break;
 
     default:
