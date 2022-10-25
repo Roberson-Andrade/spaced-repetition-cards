@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-type TooltipProps = {
+export type TooltipProps = {
   children: React.ReactElement;
   text: string;
   variant?: "info-xl";
