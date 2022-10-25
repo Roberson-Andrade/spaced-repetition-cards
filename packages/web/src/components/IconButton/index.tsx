@@ -21,6 +21,7 @@ function IconButton({
       onClick={onClick}
       disabled={disabled}
       className={`text-center align-middle p-2 rounded-full transition-all ${disabled ? "[&_*]:opacity-50" : ""} ${className}`}
+      data-testid="icon-button"
     >
       {children}
     </button>
