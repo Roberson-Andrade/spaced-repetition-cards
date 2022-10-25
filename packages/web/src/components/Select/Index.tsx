@@ -18,8 +18,8 @@ function Select({
   onChange,
 }: selectProps) {
   return (
-    <div className="flex flex-col">
-      <label htmlFor={id} className="text-sm">
+    <div className="flex flex-col" data-testid="select">
+      <label htmlFor={id} className="text-sm" data-testid="label">
         {label}
       </label>
       <select
@@ -28,8 +28,13 @@ function Select({
         value={value}
         onChange={onChange}
         className="rounded-md border h-10 focus:outline-none border-blue-200 focus:border-blue-400 focus:border-2 py-1 px-2"
+        data-testid="select-dropdown"
       >
-        {options.map((option) => (<option key={option} value={option}>{option}</option>))}
+        {options.map((option) => (
+          <option key={option} value={option} data-testid={`${option}-option`}>
+            {option}
+          </option>
+        ))}
       </select>
     </div>
   );
