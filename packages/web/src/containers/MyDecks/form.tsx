@@ -62,6 +62,7 @@ function DeckForm({ onCloseModal }: DeckFormProps) {
         key="name"
         onChange={nameInputHandler}
         value={nameValue}
+        disabled={loading}
       />
 
       <Input
@@ -71,6 +72,7 @@ function DeckForm({ onCloseModal }: DeckFormProps) {
         key="category"
         onChange={categoryInputHandler}
         value={categoryValue}
+        disabled={loading}
       />
 
       <div className="flex justify-end mt-auto">

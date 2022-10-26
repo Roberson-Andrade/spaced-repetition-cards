@@ -65,8 +65,8 @@ function CardForm({ onCloseModal }: CardFormProps) {
         return;
       }
       toast.success("Card criado com sucesso!", defaultToast);
+      resetInputs();
     });
-    resetInputs();
   };
 
   return (
@@ -84,6 +84,7 @@ function CardForm({ onCloseModal }: CardFormProps) {
         textArea
         value={frontValue}
         onChange={frontInputHandler}
+        disabled={loading}
       />
 
       <Input
@@ -94,6 +95,7 @@ function CardForm({ onCloseModal }: CardFormProps) {
         textArea
         value={backValue}
         onChange={backInputHandler}
+        disabled={loading}
       />
       <Select
         id="deck"
@@ -101,6 +103,7 @@ function CardForm({ onCloseModal }: CardFormProps) {
         options={decks.map((deck) => deck.name)}
         value={deckValue}
         onChange={deckInputHandler}
+        disabled={loading}
       />
 
       <Input
@@ -110,6 +113,7 @@ function CardForm({ onCloseModal }: CardFormProps) {
         key="tag"
         value={tagValue}
         onChange={tagInputHandler}
+        disabled={loading}
       />
 
       <div className="flex justify-end mt-auto">
