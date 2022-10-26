@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2022-05-05",
+    "numberOfRevision": "20"
+  },
+  {
+    "date": "2022-05-07",
+    "numberOfRevision": "40"
+  },
+  {
+    "date": "2022-05-08",
+    "numberOfRevision": "80"
+  },
+  {
+    "date": "2022-05-10",
+    "numberOfRevision": "120"
+  },
+  {
+    "date": "2022-05-11",
+    "numberOfRevision": "60"
+  },
+  {
+    "date": "2022-05-12",
+    "numberOfRevision": "75"
+  },
+  {
+    "date": "2022-05-15",
+    "numberOfRevision": "200"
+  }
+]

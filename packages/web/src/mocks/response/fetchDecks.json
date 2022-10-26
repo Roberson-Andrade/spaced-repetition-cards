@@ -1,0 +1,73 @@
+[
+  {
+    "id": "1",
+    "name": "Geografia",
+    "category": "Estudos",
+    "cards": [
+      {
+        "id": "a",
+        "deckId": "1",
+        "back": "trás",
+        "front": "frente",
+        "deckName": "Geografia",
+        "createdAt": "2022-04-05",
+        "revisionStatus": "OVERDUE"
+      },
+      {
+        "id": "b",
+        "deckId": "1",
+        "back": "asdsadasdaddasdas",
+        "front": "zxczxcvzxvzxvzx zxc zx zxc zx ascasc",
+        "deckName": "Geografia",
+        "createdAt": "2022-04-05",
+        "revisionStatus": "OVERDUE"
+      },
+      {
+        "id": "c",
+        "deckId": "1",
+        "back": "zzzzzzzzzzzzzzzzzzzzzz",
+        "front": "a s das asd asdasdasad a te",
+        "deckName": "Geografia",
+        "createdAt": "2022-04-05",
+        "revisionStatus": "OVERDUE"
+      }
+    ],
+    "createdAt": "2022-10-15",
+    "totalCards": 3,
+    "overdueCards": 3
+  },
+  {
+    "id": "2",
+    "name": "História",
+    "category": "Estudos",
+    "cards": [
+      {
+        "id": "f",
+        "deckId": "2",
+        "back": "trás",
+        "front": "frente",
+        "deckName": "História",
+        "createdAt": "2022-04-05"
+      },
+      {
+        "id": "g",
+        "deckId": "2",
+        "back": "asdsadasdaddasdas",
+        "front": "zxczxcvzxvzxvzx zxc zx zxc zx ascasc",
+        "deckName": "História",
+        "createdAt": "2022-04-05"
+      },
+      {
+        "id": "h",
+        "deckId": "2",
+        "back": "zzzzzzzzzzzzzzzzzzzzzz",
+        "front": "a s das asd asdasdasad a te",
+        "deckName": "História",
+        "createdAt": "2022-04-05"
+      }
+    ],
+    "createdAt": "2022-10-15",
+    "totalCards": 0,
+    "overdueCards": 0
+  }
+]
