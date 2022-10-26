@@ -11,7 +11,7 @@ const defaultProps: selectProps = {
 
 describe("Select Component", () => {
   it("Should render the select", () => {
-    const { getByTestId } = render(<Select {...defaultProps} />);
+    const { getByTestId } = render(<Select {...defaultProps} onChange={() => {}} />);
 
     expect(getByTestId("select")).toBeInTheDocument();
   });
