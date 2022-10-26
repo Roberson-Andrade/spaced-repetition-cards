@@ -17,6 +17,7 @@ function App() {
       toast.error(error || "Erro interno", defaultToast);
     }
   };
+
   useEffect(() => {
     fetchDecks(stopLoadingHandler);
     fetchRevisions((error: string | null) => {
@@ -25,6 +26,7 @@ function App() {
       }
     });
   }, []);
+
   return (
     <div className="flex text-slate-700">
       {loading ? (
