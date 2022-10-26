@@ -11,6 +11,7 @@ export type InputProps = {
   variant?: "search";
   className?: string;
   textArea?: boolean;
+  disabled?: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement> |
     React.ChangeEventHandler<HTMLTextAreaElement>;
 }
@@ -23,6 +24,7 @@ function Input({
   variant,
   className,
   textArea,
+  disabled,
   onChange,
 }: InputProps) {
   let classVariant: string;
@@ -47,12 +49,14 @@ function Input({
           value={value}
           onChange={onChange as React.ChangeEventHandler<HTMLTextAreaElement>}
           className={`rounded-md border focus:outline-none border-blue-200 focus:border-blue-400 focus:border-2 py-1 px-2 ${classVariant}`}
+          disabled={disabled}
         />
       ) : (
         <input
           id={id}
           type={type}
           value={value}
+          disabled={disabled}
           onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
           className={`rounded-md border focus:outline-none border-blue-200 focus:border-blue-400 focus:border-2 py-1 px-2 ${classVariant}`}
         />
