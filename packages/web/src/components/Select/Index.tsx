@@ -7,6 +7,7 @@ export type selectProps = {
   label: string;
   options: string[];
   value?: string;
+  disabled?: boolean;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
@@ -15,6 +16,7 @@ function Select({
   label,
   options,
   value,
+  disabled,
   onChange,
 }: selectProps) {
   return (
@@ -27,6 +29,7 @@ function Select({
         name={id}
         value={value}
         onChange={onChange}
+        disabled={disabled}
         className="rounded-md border h-10 focus:outline-none border-blue-200 focus:border-blue-400 focus:border-2 py-1 px-2"
         data-testid="select-dropdown"
       >
