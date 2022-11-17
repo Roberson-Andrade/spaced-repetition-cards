@@ -5,9 +5,12 @@ import { useWindowWidth } from "../../../hooks/useScreenWidth";
 import { CardType, RevisionRequestDataType } from "../../../types";
 
 type RevisionDisplayProps = {
-  items: CardType[],
-  stopRevision: (requestData: RevisionRequestDataType, allCardsFinished?: boolean) => void;
-}
+  items: CardType[];
+  stopRevision: (
+    requestData: RevisionRequestDataType,
+    allCardsFinished?: boolean
+  ) => void;
+};
 
 function RevisionDisplay({ items, stopRevision }: RevisionDisplayProps) {
   const [selected, setSelected] = useState(0);
@@ -64,16 +67,52 @@ function RevisionDisplay({ items, stopRevision }: RevisionDisplayProps) {
   return (
     <>
       <div className="relative w-full h-full 3sm:h-[calc(100vh_-_120px)] flex-center">
-        {cards.map(({
-          id,
-          front,
-          back,
-          deckName,
-          tag,
-          createdAt
-        }, index, array) => {
-          if (index < selected && screenWidth > 600) {
-            return (
+        {cards.map(
+          ({ id, front, back, deckName, tag, createdAt }, index, array) => {
+            if (index < selected && screenWidth > 600) {
+              return (
+                <Card
+                  key={id}
+                  front={front}
+                  back={back}
+                  deckName={deckName}
+                  tag={tag}
+                  createdAt={createdAt}
+                  className="absolute -translate-x-[40%] max-h-[600px] max-w-[400px] blur-[1.5px] scale-90 -rotate-3"
+                  rotateDisabled
+                  disableFlipAnimation
+                  onClick={selectPrevious}
+                />
+              );
+            }
+            if (selected === index) {
+              return (
+                <Card
+                  key={id}
+                  front={front}
+                  back={back}
+                  deckName={deckName}
+                  tag={tag}
+                  createdAt={createdAt}
+                  flipToggle
+                  showActionButtons
+                  showLeftButton={index !== 0 && screenWidth < 600}
+                  showRightButton={
+                    index !== array.length - 1 && screenWidth < 600
+                  }
+                  onClickSuccessBtn={(event) => {
+                    successClickHandler(event, index);
+                  }}
+                  onClickFailBtn={(event) => {
+                    failClickHandler(event, index);
+                  }}
+                  onClickNextBtn={selectNext}
+                  onClickPreviousBtn={selectPrevious}
+                  className="absolute translate-x-0 max-h-[600px] max-w-[400px] z-[1000] backdrop-blur-sm"
+                />
+              );
+            }
+            return screenWidth > 600 ? (
               <Card
                 key={id}
                 front={front}
@@ -81,53 +120,16 @@ function RevisionDisplay({ items, stopRevision }: RevisionDisplayProps) {
                 deckName={deckName}
                 tag={tag}
                 createdAt={createdAt}
-                className="absolute left-[20%] 2xl:left-[15%] xl:left-[10%] lg:left-[5%] md:-left-[3.5%] max-h-[600px] max-w-[400px] blur-[1.5px] scale-90 -rotate-3"
+                className={`absolute translate-x-[40%] max-h-[600px] max-w-[400px] z-[${
+                  array.length - 1 - index
+                }] scale-90 blur-[1.5px] rotate-3`}
                 rotateDisabled
                 disableFlipAnimation
-                onClick={selectPrevious}
+                onClick={selectNext}
               />
-            );
+            ) : null;
           }
-          if (selected === index) {
-            return (
-              <Card
-                key={id}
-                front={front}
-                back={back}
-                deckName={deckName}
-                tag={tag}
-                createdAt={createdAt}
-                flipToggle
-                showActionButtons
-                showLeftButton={index !== 0 && screenWidth < 600}
-                showRightButton={index !== array.length - 1 && screenWidth < 600}
-                onClickSuccessBtn={(event) => {
-                  successClickHandler(event, index);
-                }}
-                onClickFailBtn={(event) => {
-                  failClickHandler(event, index);
-                }}
-                onClickNextBtn={selectNext}
-                onClickPreviousBtn={selectPrevious}
-                className="absolute max-h-[600px] max-w-[400px] z-[1000] backdrop-blur-sm"
-              />
-            );
-          }
-          return screenWidth > 600 ? (
-            <Card
-              key={id}
-              front={front}
-              back={back}
-              deckName={deckName}
-              tag={tag}
-              createdAt={createdAt}
-              className={`absolute right-[20%] 2xl:right-[15%] xl:right-[10%] lg:right-[5%] md:-right-[3.5%] max-h-[600px] max-w-[400px] z-[${(array.length - 1) - index}] scale-90 blur-[1.5px] rotate-3`}
-              rotateDisabled
-              disableFlipAnimation
-              onClick={selectNext}
-            />
-          ) : null;
-        }) }
+        )}
       </div>
       <Button
         className="2sm:mt-2"
@@ -136,9 +138,7 @@ function RevisionDisplay({ items, stopRevision }: RevisionDisplayProps) {
         }}
       >
         Parar revisão
-
       </Button>
-
     </>
   );
 }
