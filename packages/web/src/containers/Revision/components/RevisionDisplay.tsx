@@ -19,20 +19,28 @@ function RevisionDisplay({ items, stopRevision }: RevisionDisplayProps) {
   const [revisedCards, setRevisedCards] = useState<string[]>([]);
   const screenWidth = useWindowWidth();
 
-  const selectNext = (event: React.MouseEvent) => {
+  const selectNext = (event: React.MouseEvent | globalThis.KeyboardEvent) => {
     event.stopPropagation();
-    if (selected === cards.length) {
-      return;
-    }
-    setSelected((previousState) => previousState + 1);
+
+    setSelected((previousState) => {
+      if (previousState + 1 === cards.length) {
+        return previousState;
+      }
+      return previousState + 1;
+    });
   };
 
-  const selectPrevious = (event: React.MouseEvent) => {
+  const selectPrevious = (
+    event: React.MouseEvent | globalThis.KeyboardEvent
+  ) => {
     event.stopPropagation();
-    if (selected === 0) {
-      return;
-    }
-    setSelected((previousState) => previousState - 1);
+
+    setSelected((previousState) => {
+      if (previousState === 0) {
+        return previousState;
+      }
+      return previousState - 1;
+    });
   };
 
   const successClickHandler = (event: React.MouseEvent, cardIndex: number) => {
@@ -57,6 +65,24 @@ function RevisionDisplay({ items, stopRevision }: RevisionDisplayProps) {
       return newState;
     });
   };
+
+  useEffect(() => {
+    const amazonasQuer = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "ArrowRight") {
+        selectNext(event);
+      }
+
+      if (event.key === "ArrowLeft") {
+        selectPrevious(event);
+      }
+    };
+
+    window.addEventListener("keydown", amazonasQuer);
+
+    return () => {
+      window.removeEventListener("keydown", amazonasQuer);
+    };
+  }, []);
 
   useEffect(() => {
     if (!cards.length) {
