@@ -47,7 +47,7 @@ describe("Card component", () => {
       />
     );
 
-    const cardElement = getByTestId("rotate-wrapper");
+    const cardElement = getByTestId("card-rotate-wrapper");
 
     fireEvent.click(cardElement);
     expect(cardElement).toHaveClass("rotate-y-180");
@@ -64,7 +64,7 @@ describe("Card component", () => {
       />
     );
 
-    const cardElement = getByTestId("rotate-wrapper");
+    const cardElement = getByTestId("card-rotate-wrapper");
 
     fireEvent.click(cardElement);
     expect(cardElement).not.toHaveClass("rotate-y-180");
@@ -78,7 +78,7 @@ describe("Card component", () => {
       />
     );
 
-    const cardElement = getByTestId("rotate-wrapper");
+    const cardElement = getByTestId("card-rotate-wrapper");
 
     fireEvent.click(cardElement);
     expect(cardElement).toHaveClass("rotate-y-180");
@@ -100,7 +100,7 @@ describe("Card component", () => {
       />
     );
 
-    const cardElement = getByTestId("rotate-wrapper");
+    const cardElement = getByTestId("card-rotate-wrapper");
 
     fireEvent.click(cardElement);
     expect(mockedOnClick).toBeCalled();

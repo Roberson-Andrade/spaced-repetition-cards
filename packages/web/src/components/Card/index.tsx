@@ -79,18 +79,17 @@ function Card({
       onClick={clickHandler}
       onMouseLeave={leaveFlipHandler}
       onKeyDown={leaveFlipHandler}
-      className={`w-full max-w-[250px] h-full max-h-[300px] perspective-10 ${
-        className || ""
-      }`}
+      className={`w-full max-w-[250px] h-full max-h-[300px] perspective-10 ${className || ""
+        }`}
       role="button"
       tabIndex={0}
       onAnimationEnd={onAnimationEnd}
+      data-testid="card"
     >
       <div
-        className={`w-full h-full transform-style-3d ${
-          disableFlipAnimation ? "" : "transition-transform duration-300"
-        } ${flip}`}
-        data-testid="rotate-wrapper"
+        className={`w-full h-full transform-style-3d ${disableFlipAnimation ? "" : "transition-transform duration-300"
+          } ${flip}`}
+        data-testid="card-rotate-wrapper"
       >
         <article className="h-full w-full bg-white rounded-md shadow-md hover:shadow-xl hover:translate-y-[-3px] relative transform-style-3d transition-transform cursor-pointer">
           <div className="flex flex-col gap-5 p-2 h-full w-full absolute backface-hidden">
