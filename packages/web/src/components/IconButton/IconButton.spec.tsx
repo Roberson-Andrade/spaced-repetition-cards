@@ -8,7 +8,7 @@ const defaultProps: IconButtonProps = {
 
 };
 
-describe("Select Component", () => {
+describe("IconButton Component", () => {
   it("Should render the icon button", () => {
     const { getByTestId } = render(<IconButton {...defaultProps} />);
 
