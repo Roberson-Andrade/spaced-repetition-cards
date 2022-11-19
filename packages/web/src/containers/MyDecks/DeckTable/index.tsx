@@ -29,7 +29,7 @@ function DeckTable({ items }:DeckTableProps) {
             Criar deck
           </Button>
         </div>
-        <ul className="mt-4 max-h-full overflow-y-auto 3sm:overflow-visible sm:pb-10 sm:max-h-max">
+        <ul data-testid="deck-list" className="mt-4 max-h-full overflow-y-auto 3sm:overflow-visible sm:pb-10 sm:max-h-max">
           {items.map((deck:Deck) => <DeckItem key={deck.id} item={deck} />)}
         </ul>
       </div>
