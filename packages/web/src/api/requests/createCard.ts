@@ -27,7 +27,6 @@ export const createCard = async (cardData: CardData, callback: Callback, set: Zu
       };
 
       newDeckArray[deckIndex] = newDeck;
-      console.log("newDeckArray", newDeckArray);
 
       return ({ decks: newDeckArray, cards: [...state.cards, createdCard] });
     });
