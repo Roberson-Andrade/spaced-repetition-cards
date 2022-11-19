@@ -19,10 +19,10 @@
   .btn-disabled {
     @apply bg-[#bab4b4] text-[#605f5f] cursor-default;
   }
-  
+
   .media-sidebar {
     @apply 3sm:h-[calc(100%_-_100px)];
-  } 
+  }
 }
 
 @layer utilities {
@@ -50,6 +50,10 @@
   margin: 0;
   padding: 0;
   box-sizing: "border-box";
+}
+
+*:focus {
+  outline: 0;
 }
 
 body {
